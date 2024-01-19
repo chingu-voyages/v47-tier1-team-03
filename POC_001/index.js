@@ -19,7 +19,7 @@ for (let i of data[0]) {
     grid.appendChild(cell);
 }
 
-// Second ROW - SUB-HEADER
+// SECOND ROW - SUB-HEADER
 for (let i of data[1]) {
     let cell = document.createElement("div");
     cell.innerHTML = i;
