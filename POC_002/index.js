@@ -9,7 +9,13 @@ calendar.forEach(function (category) {
     text += "<h2>--" + activityType.activityName + "</h2>";
     activityType.Tasks.forEach(function (task) {
       text += "<h3>----" + "Task Name: " + task.taskName + "</h3>";
-      text += "<p>--------" + "Task Description: " + task.taskDescription + "</p>";
+      text +=
+        "<p>--------" + "Task Description: " + task.taskDescription + "</p>";
+
+      task.days.forEach((day) => {
+text += day + " ,"
+
+      });
     });
   });
 });
