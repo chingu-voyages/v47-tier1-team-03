@@ -1,22 +1,21 @@
 import { calendar } from "./data.js";
 
-var text = "<p class='day'>M <br>1</p>";
+let text = "<p class='day'>M <br>1</p>";
 
 // I used Carlos POC_002 adding backticks (``) and $ signs 
 // to attribute each element a class to each item.
 
-calendar.forEach(function (category) {
+calendar.forEach( category => {
 
     text += `
     <p class="categories">${category.categoryName}</p>`
-    
 
-  category.activityTypes.forEach(function (activityType) {
+  category.activityTypes.forEach( activity => {
 
     text += `
-    <p class="activities">${activityType.activityName}</p>`
+    <p class="activities">${activity.activityName}</p>`
 
-    activityType.Tasks.forEach(function (task) {
+    activity.Tasks.forEach( task => {
 
         text += `
         <p class="task-days">${task.days}</p>`
@@ -32,4 +31,4 @@ calendar.forEach(function (category) {
   });
 });
 
-document.getElementById("test_div").innerHTML = text
+document.getElementById("test_div").innerHTML = text;

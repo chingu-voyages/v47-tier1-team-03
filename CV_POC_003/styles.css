@@ -14,7 +14,7 @@ html, body{
 .grid{
     display: grid;
     grid-template-columns: 100px 200px repeat(31, auto);
-    grid-auto-rows: auto; 
+    grid-auto-rows: auto;
 }
 
 /* Category Styles */
