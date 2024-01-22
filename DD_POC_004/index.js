@@ -5,7 +5,6 @@ let text = ``;
 const now = new Date();
 const year = now.getFullYear();
 const month = now.getMonth();
-const firstDay = new Date(year, month, 1).getDay();
 const daysInMonth = new Date(year, month + 1, 0).getDate();
 
 renderCalendar();
@@ -13,8 +12,6 @@ renderCalendar();
 renderTasks();
 
 function renderCalendar() {
-    // array to store days of week starting from sunday at index 0 which as the same as JS Date.getDay()
-    const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
     let datesHtml = '';
     let daysHtml = '';
@@ -22,11 +19,17 @@ function renderCalendar() {
     const daysEl = document.getElementById('weekdays')
     const datesEl = document.getElementById('month-dates')
 
-    //a loop for the number of days in the month
     for (let i = 1; i <= daysInMonth; i++) {
-        //this gives us the day of the week on a specific date of the month
-        let dayOfWeekIndex = (i + firstDay - 1) % 7;
-        daysHtml += `<p class=''>${daysOfWeek[dayOfWeekIndex]}</p>`;
+        let currentDate = new Date(year, month, i);
+
+        let currentDayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'short' }).format(currentDate);
+        if (currentDayOfWeek === 'Sat') {
+            currentDayOfWeek = 'Sa'
+        } else {
+            currentDayOfWeek = currentDayOfWeek[0];
+        }
+
+        daysHtml += `<p class=''>${currentDayOfWeek}</p>`;
         datesHtml += `<p class=''>${i}</p>`;
     }
 
