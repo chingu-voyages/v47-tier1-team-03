@@ -74,7 +74,7 @@ function renderTasks() {
 2.store the data in local storage 
 3. remove piece of data from local storage when requested
 4.clear all items you stored : storing data for one session, deletes when browser is refreshed?
-*/
+
 checkbox.addEventListener("click", (task) => {
   //1.get the data you want which is in js object and turn into JSON
 
@@ -98,4 +98,4 @@ const getData = async () => {
   } catch (error) {
     console.log(error);
   }
-};
+};*/
