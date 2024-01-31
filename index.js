@@ -59,7 +59,7 @@ function renderTasks() {
 
         for (let i = 1; i <= daysInMonth; i++) {
           text += `
-                    <input type="checkbox">`;
+                    <input type="checkbox" data-task-name="${task.taskName}" data-day="${task.days}">`;
         }
       });
     });
@@ -68,34 +68,12 @@ function renderTasks() {
   document.getElementById("test_div").innerHTML = text;
 }
 
-/*Local storage Implementation
+const allCheckboxes = document.querySelectorAll('input [type = "checkbox"]');
+allCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    const selectedTask = checkbox.getAttribute("data-task-name");
+    const selectedDay = checkbox.getAttribute("data-day");
 
-1.get the data you want which is in js object and turn into JSON
-2.store the data in local storage 
-3. remove piece of data from local storage when requested
-4.clear all items you stored : storing data for one session, deletes when browser is refreshed?
-
-checkbox.addEventListener("click", (task) => {
-  //1.get the data you want which is in js object and turn into JSON
-
-  const string = JSON.stringify(task);
-
-  //2.store the data in local storage
-  localStorage.setItem("task", string);
-
-  //3.clear all items you stored
-  localStorage.clear();
+    alert(`You have selected ${selectedTask} on ${selectedDay}`);
+  });
 });
-
-//fetch API test?
-
-const getData = async () => {
-  try {
-    const response = await fetch(calendar);
-    if (response.ok) {
-      const data = await response.json();
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};*/
