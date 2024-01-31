@@ -11,6 +11,8 @@ renderCalendar();
 
 renderTasks();
 
+adaptCheckboxClass();
+
 function renderCalendar() {
   let datesHtml = "";
   let daysHtml = "";
@@ -59,7 +61,7 @@ function renderTasks() {
 
         for (let i = 1; i <= daysInMonth; i++) {
           text += `
-                    <input type="checkbox" data-task-name="${task.taskName}" data-day="${task.days}">`;
+                    <input type="checkbox">`;
         }
       });
     });
@@ -67,12 +69,3 @@ function renderTasks() {
 
   document.getElementById("test_div").innerHTML = text;
 }
-const allCheckboxes = document.querySelectorAll('input [type = "checkbox"]');
-allCheckboxes.forEach((checkbox) => {
-  checkbox.addEventListener("click", () => {
-    const selectedTask = checkbox.getAttribute("data-task-name");
-    const selectedDay = checkbox.getAttribute("data-day");
-
-    alert(`You have selected ${selectedTask} on ${selectedDay}`);
-  });
-});
