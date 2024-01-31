@@ -40,6 +40,7 @@ body {
   grid-template-columns: 100px 200px repeat(31, auto);
   grid-auto-rows: auto;
   background-color: #d4dee5;
+  column-gap: 5px;
 }
 
 /* Category Styles */
@@ -86,4 +87,38 @@ body {
   color: #454545;
   font-weight: 16px;
   padding: 8px 16px;
+}
+
+/* Dealing with checkboxe's styles */
+.checkbox{
+  appearance: none;
+  background-color: #fff;
+  /* Not removed via appearance */
+  margin: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  align-self: center;
+  border: 0.125rem solid #2E6C94;
+  transform: translateY(-0.075em);
+  
+}
+.bold-checkbox{
+  color: #2E6C94;
+  border: 0.25rem solid currentColor; 
+}
+.checked-checkbox{
+  box-shadow: inset 1em 1em green;
+}
+
+.checkbox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em red;
+}
+
+.checkbox:checked::before {
+  transform: scale(1);
 }

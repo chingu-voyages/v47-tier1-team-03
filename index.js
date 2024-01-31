@@ -7,9 +7,12 @@ const year = now.getFullYear();
 const month = now.getMonth();
 const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+
 renderCalendar();
 
 renderTasks();
+
+adaptCheckboxClass();
 
 function renderCalendar() {
   let datesHtml = "";
@@ -58,12 +61,34 @@ function renderTasks() {
         <p class="task-name task-style">${task.taskName}</p>`;
 
         for (let i = 1; i <= daysInMonth; i++) {
-          text += `
-                    <input type="checkbox">`;
+            let weekday = convertDayToWeekDay(i);
+            text += `
+            <input 
+            type="checkbox" 
+            data-day="${weekday}" 
+            data-assigned-day="${task.days}"
+            class="checkbox">`
         }
       });
     });
   });
 
   document.getElementById("test_div").innerHTML = text;
+}
+
+function adaptCheckboxClass(){
+  
+    for (let checkbox of document.getElementsByTagName('input')) {
+        if(checkbox.dataset.assignedDay === checkbox.dataset.day){
+                    checkbox.classList.add('bold-checkbox')
+                }
+        
+    }
+}
+
+function convertDayToWeekDay(i){
+    let currentDate = new Date(year, month, i);
+    let weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(currentDate);
+
+    return weekday.toLowerCase()
 }
