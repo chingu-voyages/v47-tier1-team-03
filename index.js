@@ -67,7 +67,6 @@ function renderTasks() {
 
   document.getElementById("test_div").innerHTML = text;
 }
-
 const allCheckboxes = document.querySelectorAll('input [type = "checkbox"]');
 allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
