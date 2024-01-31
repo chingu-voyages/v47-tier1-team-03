@@ -65,5 +65,5 @@ function renderTasks() {
     });
   });
 
-  document.getElementById("test_div").innerHTML = text;
+  document.getElementById("main-grid").innerHTML = text;
 }
