@@ -7,9 +7,12 @@ const year = now.getFullYear();
 const month = now.getMonth();
 const daysInMonth = new Date(year, month + 1, 0).getDate();
 
+
 renderCalendar();
 
 renderTasks();
+
+adaptCheckboxClass();
 
 function renderCalendar() {
   let datesHtml = "";
@@ -79,9 +82,9 @@ function adaptCheckboxClass(){
         if(checkbox.dataset.assignedDay === checkbox.dataset.day){
                     checkbox.classList.add('bold-checkbox')
                 }
+        
     }
 }
-adaptCheckboxClass()
 
 function convertDayToWeekDay(i){
     let currentDate = new Date(year, month, i);
