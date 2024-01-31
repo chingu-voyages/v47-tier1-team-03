@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+h1 {
+    color: green;
+}
+
+.script {
+    display: block;
+    position: relative;
+    padding-left: 45px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.script input[type=checkbox] {
+    visibility: hidden;
+}
+
+.geekmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: green;
+}
+
+/* .script:hover input~.geekmark {
+    background-color: yellow;
+} */
+
+.script input:active~.geekmark {
+    background-color: red;
+}
+
+.script input:checked~.geekmark {
+    background-color: green;
+}
+
+.geekmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.script input:checked~.geekmark:after {
+    display: block;
+}
+
+.script .geekmark:after {
+    left: 6px;
+    bottom: 5px;
+    width: 6px;
+    height: 6px;
+    border: solid white;
+    border-width: 4px 4px 4px 4px;
+}
+</style>
