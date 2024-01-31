@@ -67,7 +67,7 @@ function renderTasks() {
             type="checkbox" 
             data-day="${weekday}" 
             data-assigned-day="${task.days}"
-            class="checkbox">`
+            <span class="checkbox"></span>`
         }
       });
     });

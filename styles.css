@@ -90,35 +90,51 @@ body {
 }
 
 /* Dealing with checkboxe's styles */
-.checkbox{
+
+input[type='checkbox'] {
   appearance: none;
   background-color: #fff;
   /* Not removed via appearance */
   margin: 0;
+  position: relative;
+}
+  
+.checkbox{
   width: 1.125rem;
   height: 1.125rem;
   align-self: center;
   border: 0.125rem solid #2E6C94;
-  transform: translateY(-0.075em);
   
 }
+  
 .bold-checkbox{
   color: #2E6C94;
   border: 0.25rem solid currentColor; 
-}
-.checked-checkbox{
-  box-shadow: inset 1em 1em green;
+  cursor: pointer;
 }
 
-.checkbox::before {
+.bold-checkbox:hover {
+  background-color: gray;
+}
+
+.bold-checkbox:checked {
+  background-color: green;
+}
+.bold-checkbox:after {
   content: "";
-  width: 0.65em;
-  height: 0.65em;
-  transform: scale(0);
-  transition: 120ms transform ease-in-out;
-  box-shadow: inset 1em 1em red;
+  position: absolute;
+  display: block;
 }
 
-.checkbox:checked::before {
-  transform: scale(1);
+.bold-checkbox:checked:after {
+  top: -3px;
+  left: 2.5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
+
