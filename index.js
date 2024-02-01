@@ -70,7 +70,8 @@ function renderTasks() {
   document.getElementById("test_div").innerHTML = text;
 }
 
-/*Local storage implementation : targeting/selecting checkboxes first*/
+/*Local storage implementation : targeting/selecting checkboxes first
+ */
 const allCheckboxes = document.querySelectorAll('input[type="checkbox]');
 allCheckboxes.forEach((checkbox) => {
   checkbox.addEventListener("click", () => {
