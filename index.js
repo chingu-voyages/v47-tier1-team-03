@@ -87,9 +87,9 @@ function adaptCheckboxClass(){
         }
         if(checkbox.dataset.assignedDay === checkbox.dataset.day){
           checkbox.classList.add('bold-checkbox')
-          if(now.getDate() === checkbox.dataset.day){
-            checkbox.classList.add('red')
-          }
+          // if(now.getDate() === checkbox.dataset.day){
+          //   checkbox.classList.add('red')
+          // }
 
         }
         
