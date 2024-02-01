@@ -64,8 +64,9 @@ function renderTasks() {
             let weekday = convertDayToWeekDay(i);
             text += `
             <input 
-            type="checkbox" 
-            data-day="${weekday}" 
+            type="checkbox"
+            data-day="${i}" 
+            data-weekday="${weekday}" 
             data-assigned-day="${task.days}"
             <span class="checkbox"></span>`
         }
@@ -79,9 +80,18 @@ function renderTasks() {
 function adaptCheckboxClass(){
   
     for (let checkbox of document.getElementsByTagName('input')) {
+      // for (let weekday of checkbox.dataset.weekday.split(','))
+        if(checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday) ){
+          checkbox.classList.add('bold-checkbox')
+          
+        }
         if(checkbox.dataset.assignedDay === checkbox.dataset.day){
-                    checkbox.classList.add('bold-checkbox')
-                }
+          checkbox.classList.add('bold-checkbox')
+          if(now.getDate() === checkbox.dataset.day){
+            checkbox.classList.add('red')
+          }
+
+        }
         
     }
 }
