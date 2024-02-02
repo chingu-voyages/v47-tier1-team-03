@@ -11,6 +11,8 @@ renderCalendar();
 
 renderTasks();
 
+adaptCheckboxClass();
+
 function renderCalendar() {
   let datesHtml = "";
   let daysHtml = "";
@@ -52,14 +54,14 @@ function renderTasks() {
 
       activity.Tasks.forEach((task) => {
         text += `
-        <p class="task-days task-style">${task.days}</p>`;
+        <p class="task-days">${task.days}</p>`;
 
         text += `
-        <p class="task-name task-style">${task.taskName}</p>`;
+        <p class="task-name">${task.taskName}</p>`;
 
         for (let i = 1; i <= daysInMonth; i++) {
           text += `
-                    <input type="checkbox">`;
+                      <input type="checkbox" data-task-name="${task.taskName}" data-day="${task.days}" >`;
         }
       });
     });
@@ -67,3 +69,14 @@ function renderTasks() {
 
   document.getElementById("main-grid").innerHTML = text;
 }
+
+/*Local storage implementation : targeting/selecting checkboxes first
+ */
+const allCheckboxes = document.querySelectorAll('input[type="checkbox]');
+allCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    const selectedTask = checkbox.getAttribute("data-task-name");
+    const selectedDay = checkbox.getAttribute("data-day");
+    console.log(`You have selected ${selectedTask} on ${selectedDay}`); //turn into an alert
+  });
+});
