@@ -115,6 +115,7 @@ input[type='checkbox'] {
   color: #2E6C94;
   border: 0.25rem solid currentColor; 
   cursor: pointer;
+  z-index: 2;
 }
 
 .bold-checkbox:hover {
@@ -140,6 +141,16 @@ input[type='checkbox'] {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+/* Still testing */
+.current-day-marker{
+  position: relative;
+  z-index: 1;
+  position: absolute;
+  background-color: #2E6C94;
+  padding: 900px 20px;
+  opacity: 50%;
 }
 .red{
   background-color: red;

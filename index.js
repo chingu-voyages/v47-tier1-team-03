@@ -32,9 +32,13 @@ function renderCalendar() {
     } else {
       currentDayOfWeek = currentDayOfWeek[0];
     }
-
-    daysHtml += `<p class=''>${currentDayOfWeek}</p>`;
-    datesHtml += `<p class=''>${i}</p>`;
+    if(i === now.getDate()){
+      daysHtml += `<span class='red'>${currentDayOfWeek}</span>`;
+      datesHtml += `<span class='red'>${i}</span>`;
+    }
+      else {daysHtml += `<p class=''>${currentDayOfWeek}</p>`;
+      datesHtml += `<p class=''>${i}</p>`}
+    
   }
 
   daysEl.innerHTML = daysHtml;
