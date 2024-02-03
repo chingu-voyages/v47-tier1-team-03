@@ -116,3 +116,14 @@ function convertDayToWeekDay(i) {
 
     return weekday.toLowerCase()
 }
+
+/*Local storage implementation : targeting/selecting checkboxes first
+ */
+const allCheckboxes = document.querySelectorAll('input[type="checkbox]');
+allCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("click", () => {
+        const selectedTask = checkbox.getAttribute("data-task-name");
+        const selectedDay = checkbox.getAttribute("data-day");
+        console.log(`You have selected ${selectedTask} on ${selectedDay}`); //turn into an alert
+    });
+});
