@@ -2,16 +2,17 @@ import { calendar } from "./data.js";
 
 let text = ``;
 // Date variables
-let selectedDate = new Date();
+let SelectedMonth = new Date();
 let now = new Date();
 
+//Event listener for 'changing months' buttons
 document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
-        selectedDate.setMonth(selectedDate.getMonth() - 1);
-        changeMonth()
+        SelectedMonth.setMonth(SelectedMonth.getMonth() - 1);
+        renderSelectedMonth()
     } else if (e.target.id === 'next-month') {
-        selectedDate.setMonth(selectedDate.getMonth() + 1);
-        changeMonth()
+        SelectedMonth.setMonth(SelectedMonth.getMonth() + 1);
+        renderSelectedMonth()
     }
 })
 
@@ -28,10 +29,10 @@ function renderCalendar() {
 
     const daysEl = document.getElementById("weekdays");
     const datesEl = document.getElementById("month-dates");
-    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
+    const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
 
     for (let i = 1; i <= daysInMonth; i++) {
-        let currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);
+        let currentDate = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i);
 
         let currentDayOfWeek = new Intl.DateTimeFormat("en-US", {
             weekday: "short",
@@ -42,7 +43,7 @@ function renderCalendar() {
         } else {
             currentDayOfWeek = currentDayOfWeek[0];
         }
-        if (i === now.getDate() && now.getTime() === selectedDate.getTime()) {
+        if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
             daysHtml += `
               <div class='todays-date'>
                 <p>${currentDayOfWeek}</p>
@@ -67,7 +68,7 @@ function renderCalendar() {
 }
 // Rendering JSON and checkboxes
 function renderTasks() {
-    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
+    const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
 
     calendar.forEach((category) => {
         text += `
@@ -85,16 +86,17 @@ function renderTasks() {
             <p class="task-name task-style">${task.taskName}</p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
-                    // Converting to day to the week and testing to know if it's today
+                    // Converting i (current month day) to week day and testing i to determine if i is today
                     let weekday = convertDayToWeekDay(i);
                     let todayClass = '';
-                    if (i === now.getDate() && now.getTime() === selectedDate.getTime()) {
+                    if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
                         todayClass = "todays-checkbox-container"
                     }
 
                     text += `
                       <div class="checkbox-container ${todayClass}">        
-                        <input                     type="checkbox"
+                        <input
+                        type="checkbox"
                         data-day="${i}" 
                         data-weekday="${weekday}" 
                         data-assigned-day="${task.days}"
@@ -121,15 +123,15 @@ function adaptCheckboxClass() {
 }
 
 function convertDayToWeekDay(i) {
-    let currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);
+    let currentDate = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i);
     let weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(currentDate);
 
     return weekday.toLowerCase()
 }
 
-function changeMonth() {
+function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
-    monthEl.textContent = `${selectedDate.toLocaleString('default', { month: 'long' })} ${selectedDate.getFullYear()}`
+    monthEl.textContent = `${SelectedMonth.toLocaleString('default', { month: 'long' })} ${SelectedMonth.getFullYear()}`
     text = ``;
     renderCalendar()
     renderTasks()
