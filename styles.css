@@ -154,6 +154,14 @@ input[type='checkbox'] {
     z-index: 2;
 }
 
+.bold-checkbox-due {
+    color: #2E6C94;
+}
+
+.bold-checkbox-past-due-date {
+    color: red;
+}
+
 .bold-checkbox:hover {
     background-color: gray;
 }

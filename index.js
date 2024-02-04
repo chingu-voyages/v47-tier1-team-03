@@ -97,8 +97,10 @@ function renderTasks() {
                       <div class="checkbox-container ${todayClass}">        
                         <input
                         type="checkbox"
-                        data-day="${i}" 
+                        data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
                         data-weekday="${weekday}" 
+                        data-new-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
+                            .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
                         data-assigned-day="${task.days}"
                         <span class="checkbox"></span>
                       </div>`
@@ -111,14 +113,22 @@ function renderTasks() {
 }
 // Making checkboxes bold
 function adaptCheckboxClass() {
-
-    for (let checkbox of document.getElementsByTagName('input')) {
+    const checkboxes = document.getElementById('main-grid').getElementsByTagName('input')
+    for (let checkbox of checkboxes) {
         if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)) {
             checkbox.classList.add('bold-checkbox')
         }
         if (checkbox.dataset.assignedDay === checkbox.dataset.day) {
             checkbox.classList.add('bold-checkbox')
         }
+        if (checkbox.dataset.day.getDate < now.getDate){
+            checkbox.classList.add('bold-checkbox-past-due-date')
+        }
+        if(checkbox.dataset.day.getDate >= now.getDate)
+            checkbox.classList.add('bold-checkbox-due')
+        
+            checkbox.classList.remove('bold-checkbox-past-due-date')
+
     }
 }
 
