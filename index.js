@@ -2,19 +2,16 @@ import { calendar } from "./data.js";
 
 let text = ``;
 // Date variables
+let selectedDate = new Date();
 let now = new Date();
-const year = now.getFullYear();
-let month = now.getMonth();
-// const daysInMonth = new Date(year, month + 1, 0).getDate();
 
 document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
-        now.setMonth(now.getMonth() - 1);
-        const monthEl = document.getElementById('month')
-        monthEl.textContent = now.toLocaleString('default', { month: 'long' })
-        renderCalendar()
-        renderTasks()
-        adaptCheckboxClass()
+        selectedDate.setMonth(selectedDate.getMonth() - 1);
+        changeMonth()
+    } else if (e.target.id === 'next-month') {
+        selectedDate.setMonth(selectedDate.getMonth() + 1);
+        changeMonth()
     }
 })
 
@@ -31,10 +28,10 @@ function renderCalendar() {
 
     const daysEl = document.getElementById("weekdays");
     const datesEl = document.getElementById("month-dates");
-    const daysInMonth1 = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
 
-    for (let i = 1; i <= daysInMonth1; i++) {
-        let currentDate = new Date(now.getFullYear(), now.getMonth(), i);
+    for (let i = 1; i <= daysInMonth; i++) {
+        let currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);
 
         let currentDayOfWeek = new Intl.DateTimeFormat("en-US", {
             weekday: "short",
@@ -45,7 +42,7 @@ function renderCalendar() {
         } else {
             currentDayOfWeek = currentDayOfWeek[0];
         }
-        if (i === now.getDate()) {
+        if (i === now.getDate() && now.getTime() === selectedDate.getTime()) {
             daysHtml += `
               <div class='todays-date'>
                 <p>${currentDayOfWeek}</p>
@@ -70,7 +67,7 @@ function renderCalendar() {
 }
 // Rendering JSON and checkboxes
 function renderTasks() {
-    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
 
     calendar.forEach((category) => {
         text += `
@@ -90,16 +87,19 @@ function renderTasks() {
                 for (let i = 1; i <= daysInMonth; i++) {
                     // Converting to day to the week and testing to know if it's today
                     let weekday = convertDayToWeekDay(i);
-                    let today = i === now.getDate() ? "todays-checkbox-container" : ""
+                    let todayClass = '';
+                    if (i === now.getDate() && now.getTime() === selectedDate.getTime()) {
+                        todayClass = "todays-checkbox-container"
+                    }
 
                     text += `
-                  <div class="checkbox-container ${today}">        
-                    <input                     type="checkbox"
-                    data-day="${i}" 
-                    data-weekday="${weekday}" 
-                    data-assigned-day="${task.days}"
-                    <span class="checkbox"></span>
-                  </div>`
+                      <div class="checkbox-container ${todayClass}">        
+                        <input                     type="checkbox"
+                        data-day="${i}" 
+                        data-weekday="${weekday}" 
+                        data-assigned-day="${task.days}"
+                        <span class="checkbox"></span>
+                      </div>`
                 }
             });
         });
@@ -113,29 +113,32 @@ function adaptCheckboxClass() {
     for (let checkbox of document.getElementsByTagName('input')) {
         if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)) {
             checkbox.classList.add('bold-checkbox')
-
         }
         if (checkbox.dataset.assignedDay === checkbox.dataset.day) {
             checkbox.classList.add('bold-checkbox')
         }
-
     }
 }
 
 function convertDayToWeekDay(i) {
-    let currentDate = new Date(now.getFullYear(), now.getMonth(), i);
+    let currentDate = new Date(selectedDate.getFullYear(), selectedDate.getMonth(), i);
     let weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(currentDate);
 
     return weekday.toLowerCase()
 }
 
 function changeMonth() {
-
+    const monthEl = document.getElementById('month')
+    monthEl.textContent = `${selectedDate.toLocaleString('default', { month: 'long' })} ${selectedDate.getFullYear()}`
+    text = ``;
+    renderCalendar()
+    renderTasks()
+    adaptCheckboxClass()
 }
 
 /*Local storage implementation : targeting/selecting checkboxes first
  */
-const allCheckboxes = document.querySelectorAll('input[type="checkbox]');
+const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
         const selectedTask = checkbox.getAttribute("data-task-name");
