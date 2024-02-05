@@ -153,8 +153,8 @@ function renderSelectedMonth() {
 const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
-        const selectedTask = checkbox.getAttribute("data-task-name");
+        const checked = checkbox.checked;
         const selectedDay = checkbox.getAttribute("data-day");
-        console.log(`You have selected ${selectedTask} on ${selectedDay}`); //turn into an alert
+        console.log(`You have selected ${checked} on ${selectedDay}`); //turn into an alert
     });
 });
