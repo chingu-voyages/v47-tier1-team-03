@@ -1,4 +1,4 @@
-export const calendar = [
+export const calendarDefault = [
     {
         "categoryName": "ROUTINE ACTIVITIES",
         "activityTypes": [
