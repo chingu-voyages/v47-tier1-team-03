@@ -1,4 +1,6 @@
-import { calendar } from "./data.js";
+
+//import { calendar } from "./data.js";
+import { loadCalendarData, saveCalendarData } from "./local-storage.js";
 
 let text = ``;
 // Date variables
@@ -16,12 +18,21 @@ document.addEventListener('click', (e) => {
     }
 })
 
+// Event Listener for On_Page_Unload - save calendar data to Local Storage
+window.addEventListener("beforeunload", (e)=>{
+    saveCalendarData(calendar)
+ });
+
+
+// load calendar data from local storage
+// if doesn't exist, load from hardcoded JSON file
+var calendar = loadCalendarData()
+
 // calling functions
 renderCalendar();
-
 renderTasks();
-
 adaptCheckboxClass();
+
 
 function renderCalendar() {
     let datesHtml = "";
