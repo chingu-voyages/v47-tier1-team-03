@@ -10,7 +10,8 @@ export const calendarDefault = [
                         "taskDescription": "",
                         "days": [
                             "monday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Update The dailyTasks sheet with the backlog tasks",

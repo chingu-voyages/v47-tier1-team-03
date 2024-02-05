@@ -1,6 +1,6 @@
 
 //import { calendar } from "./data.js";
-import { loadCalendarData, saveCalendarData } from "./local-storage.js";
+import { loadCalendarData, saveCalendarData, renderCheckboxesInfoToLS } from "./local-storage.js";
 
 let text = ``;
 // Date variables
@@ -149,13 +149,4 @@ function renderSelectedMonth() {
     adaptCheckboxClass()
 }
 
-/*Local storage implementation : targeting/selecting checkboxes first
- */
-const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
-allCheckboxes.forEach((checkbox) => {
-    checkbox.addEventListener("click", () => {
-        const selectedTask = checkbox.getAttribute("data-task-name");
-        const selectedDay = checkbox.getAttribute("data-day");
-        console.log(`You have selected ${selectedTask} on ${selectedDay}`); //turn into an alert
-    });
-});
+renderCheckboxesInfoToLS()
