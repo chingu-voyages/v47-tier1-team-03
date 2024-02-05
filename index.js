@@ -105,14 +105,16 @@ function renderTasks() {
                     }
 
                     text += `
-                      <div class="checkbox-container ${todayClass}">        
-                        <input
-                        type="checkbox"
-                        data-day="${i}" 
-                        data-weekday="${weekday}" 
-                        data-assigned-day="${task.days}"
-                        <span class="checkbox"></span>
-                      </div>`
+                    <div class="checkbox-container ${todayClass}">        
+                    <input
+                    type="checkbox"
+                    data-task="${task.taskName}"
+                    data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
+                    data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
+                        .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
+                    data-assigned-day="${task.days}"
+                    <span class="checkbox"></span>
+                  </div>`
                 }
             });
         });
