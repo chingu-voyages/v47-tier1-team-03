@@ -86,8 +86,8 @@ function renderTasks() {
             <p class="task-name task-style">${task.taskName}</p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
-                    // Converting i (current month day) to week day and testing i to determine if i is today
-                    let weekday = convertDayToWeekDay(i);
+
+                    // testing i to determine if i is today
                     let todayClass = '';
                     if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
                         todayClass = "todays-checkbox-container"
@@ -97,9 +97,9 @@ function renderTasks() {
                       <div class="checkbox-container ${todayClass}">        
                         <input
                         type="checkbox"
+                        data-task="${task.taskName}"
                         data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
-                        data-weekday="${weekday}" 
-                        data-new-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
+                        data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
                             .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
                         data-assigned-day="${task.days}"
                         <span class="checkbox"></span>
@@ -148,13 +148,16 @@ function renderSelectedMonth() {
     adaptCheckboxClass()
 }
 
-/*Local storage implementation : targeting/selecting checkboxes first
- */
+/*Local storage implementation : targeting/selecting checkboxes first*/
 const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
 allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
         const checked = checkbox.checked;
         const selectedDay = checkbox.getAttribute("data-day");
-        console.log(`You have selected ${checked} on ${selectedDay}`); //turn into an alert
+        const task = checkbox.getAttribute('data-task')
+        calendar[0].activityTypes[0].Tasks[0].checkedCb.push(selectedDay)
+        console.log(`You have selected ${checked} on ${selectedDay} on ${task}`); //turn into an alert
+        console.log(calendar[0].activityTypes[0].Tasks[0].checkedCb)
+        saveCalendarData(calendar)
     });
 });
