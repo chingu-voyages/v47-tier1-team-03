@@ -8,7 +8,6 @@ export function loadCalendarData() {
   } else {
     var parsedCalendarData = JSON.parse(savedCalendarData);
   }
-
   return parsedCalendarData;
 }
 
@@ -18,19 +17,30 @@ export function saveCalendarData(calendarData) {
   localStorage.setItem("calendarData", stringifiedCalendarData);
 }
 
-/*Local storage implementation : targeting/selecting checkboxes first
- */
+/*Local storage implementation : targeting/selecting checkboxes first*/
 export function renderCheckboxesInfoToLS(){
   const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
   allCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("click", () => {
-        const checked = checkbox.checked;
+      //Data necessary for locating CB (Axis X (tasks) and Y (days))
+        checkbox.checked = true;
         const selectedDay = checkbox.getAttribute("data-day");
-        const task = checkbox.getAttribute('data-task')
-        calendarDefault[0].activityTypes[0].Tasks[0].checkedCb.selectedDay.includes selectedDay ? "" : calendarDefault[0].activityTypes[0].Tasks[0].checkedCb.push(selectedDay)
-         
-        console.log(`You have selected ${checked} on ${selectedDay} on ${task}`);
-        console.log(calendarDefault[0].activityTypes[0].Tasks[0].checkedCb)
+        const taskAssignedToCb = checkbox.getAttribute('data-task')
+        //looping through all content
+        calendarDefault.forEach(category => 
+          category.activityTypes
+          .forEach(activity => 
+            activity.Tasks
+            .forEach(task => {
+        //verifying where CB belongs
+          if(task.taskName === taskAssignedToCb 
+            && !task.checkedCb.includes(selectedDay)){
+            task.checkedCb.push(selectedDay)
+          } 
+        })))
+        //Logging CB data on click (msg can be seen on dev tools console every time a CB is checked)
+        console.log(`You have selected ${checkbox.checked} on ${selectedDay} on ${taskAssignedToCb}`);
+
         saveCalendarData(calendarDefault)
     });
   });

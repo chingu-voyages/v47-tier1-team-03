@@ -79,6 +79,7 @@ function renderCalendar() {
 }
 // Rendering JSON and checkboxes
 function renderTasks() {
+
     const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
 
     calendar.forEach((category) => {
@@ -97,9 +98,10 @@ function renderTasks() {
             <p class="task-name task-style">${task.taskName}</p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
-                    // Converting i (current month day) to week day and testing i to determine if i is today
-                    let weekday = convertDayToWeekDay(i);
+                    // testing i to determine if i is today
                     let todayClass = '';
+                    let checked = task.checkedCb[i - 1];
+                    console.log(checked)
                     if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
                         todayClass = "todays-checkbox-container"
                     }
@@ -108,12 +110,14 @@ function renderTasks() {
                     <div class="checkbox-container ${todayClass}">        
                     <input
                     type="checkbox"
+                    data-checked="${checked}"
                     data-task="${task.taskName}"
                     data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
                     data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
                         .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
                     data-assigned-day="${task.days}"
                     <span class="checkbox"></span>
+                    </input>
                   </div>`
                 }
             });
@@ -135,13 +139,6 @@ function adaptCheckboxClass() {
     }
 }
 
-function convertDayToWeekDay(i) {
-    let currentDate = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i);
-    let weekday = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(currentDate);
-
-    return weekday.toLowerCase()
-}
-
 function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
     monthEl.textContent = `${SelectedMonth.toLocaleString('default', { month: 'long' })} ${SelectedMonth.getFullYear()}`
@@ -152,3 +149,4 @@ function renderSelectedMonth() {
 }
 
 renderCheckboxesInfoToLS()
+loadCalendarData()
