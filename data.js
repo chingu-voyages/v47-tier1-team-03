@@ -10,14 +10,16 @@ export const calendarDefault = [
                         "taskDescription": "",
                         "days": [
                             "monday"
-                        ]
+                        ],
+                        "checkedCb": [],
                     },
                     {
                         "taskName": "Update The dailyTasks sheet with the backlog tasks",
                         "taskDescription": "add the filtering feature to Done",
                         "days": [
                             "monday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             },
@@ -29,7 +31,8 @@ export const calendarDefault = [
                         "taskDescription": "",
                         "days": [
                             "friday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Write a New headline in a Blog Post Draft",
@@ -42,7 +45,8 @@ export const calendarDefault = [
                             "wednesday",
                             "thursday",
                             "friday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             }
@@ -59,14 +63,16 @@ export const calendarDefault = [
                         "taskDescription": "Set Up A Plan For The Next Month Of Node Js Learning",
                         "days": [
                             "1"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Study The First Node Js Lecture",
                         "taskDescription": "",
                         "days": [
                             "2"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             },
@@ -78,14 +84,16 @@ export const calendarDefault = [
                         "taskDescription": "Set Up A Plan For The Next Month Of Node Js Learning",
                         "days": [
                             "30"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Study The First MongoDB Lecture",
                         "taskDescription": "",
                         "days": [
                             "15"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             }
@@ -102,14 +110,16 @@ export const calendarDefault = [
                         "taskDescription": "",
                         "days": [
                             "monday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Add The New PRs To InReview",
                         "taskDescription": "",
                         "days": [
                             "7"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             },
@@ -121,14 +131,16 @@ export const calendarDefault = [
                         "taskDescription": "Add The Sections Links",
                         "days": [
                             "thursday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Refactor The Filtering Feature Code",
                         "taskDescription": "",
                         "days": [
                             "friday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             }
@@ -145,7 +157,8 @@ export const calendarDefault = [
                         "taskDescription": "Conduct The Project Planning Meeting To Discuss Our Ideas",
                         "days": [
                             "monday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Create The UI/UX Design For The DailyTasks Project",
@@ -154,7 +167,8 @@ export const calendarDefault = [
                             "monday",
                             "tuesday",
                             "wednesday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             },
@@ -166,14 +180,16 @@ export const calendarDefault = [
                         "taskDescription": "Create When2Meet Link To Introduce Yourselves",
                         "days": [
                             "thursday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     },
                     {
                         "taskName": "Attend The Introduction Meeting With Someone",
                         "taskDescription": "",
                         "days": [
                             "thursday"
-                        ]
+                        ],
+                        "checkedCb":[],
                     }
                 ]
             }
