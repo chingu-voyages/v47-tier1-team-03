@@ -146,13 +146,20 @@ function renderTasks() {
 // Making checkboxes bold
 function adaptCheckboxClass() {
 
-    for (let checkbox of document.getElementsByTagName('input')) {
+    for (let checkbox of document.getElementsByClassName('checkbox')) {
 
         //For every chbx testing if it's assigned day matches current day
         //For month days and week days
+        
         if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)
         ||checkbox.dataset.assignedDay === checkbox.dataset.day) {
-            checkbox.classList.add('bold-checkbox')
+            //Testing to know if task is past due date
+            if (compareDates(checkbox.dataset.day, now)){
+                checkbox.classList.add('bold-checkbox', 'future')
+            }
+            else {
+                checkbox.classList.add('bold-checkbox', 'past')
+            }
         }
     }
 }
@@ -164,3 +171,12 @@ adaptCheckboxClass();
 sendChkBxStateToLocalStorage();
 loadCalendarData();
 renderSelectedMonth();
+
+function compareDates (chbx, today) {
+    let currentChbx = new Date(chbx).getTime();
+    let todaysDate = new Date(today).getTime();
+  
+    if (currentChbx >= todaysDate) {
+        return true
+    }
+  };

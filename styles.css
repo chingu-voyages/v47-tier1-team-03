@@ -148,10 +148,16 @@ input[type='checkbox'] {
 /* Selecting due checkbox for a task and a day */
 
 .bold-checkbox {
-    color: #2E6C94;
     border: 0.25rem solid currentColor;
     cursor: pointer;
-    z-index: 2;
+}
+
+.future {
+    color: #2E6C94;
+}
+
+.past {
+    color: red;
 }
 
 .bold-checkbox:hover {
@@ -159,6 +165,7 @@ input[type='checkbox'] {
 }
 
 .bold-checkbox:checked {
+    color: #2E6C94;
     background-color: green;
 }
 
