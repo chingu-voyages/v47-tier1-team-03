@@ -1,8 +1,13 @@
 
 //import { calendar } from "./data.js";
-import { loadCalendarData, saveCalendarData, renderCheckboxesInfoToLS } from "./local-storage.js";
+import { loadCalendarData, sendChkBxStateToLocalStorage } from "./local-storage.js";
 
 let text = ``;
+
+// load calendar data from local storage
+// if doesn't exist, load from hardcoded JSON file
+var calendar = loadCalendarData();
+
 // Date variables
 let SelectedMonth = new Date();
 let now = new Date();
@@ -12,27 +17,21 @@ document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
         SelectedMonth.setMonth(SelectedMonth.getMonth() - 1);
         renderSelectedMonth()
-    } else if (e.target.id === 'next-month') {
+    } 
+    else if (e.target.id === 'next-month') {
         SelectedMonth.setMonth(SelectedMonth.getMonth() + 1);
         renderSelectedMonth()
     }
 })
 
-// Event Listener for On_Page_Unload - save calendar data to Local Storage
-window.addEventListener("beforeunload", (e)=>{
-    saveCalendarData(calendar)
- });
-
-
-// load calendar data from local storage
-// if doesn't exist, load from hardcoded JSON file
-var calendar = loadCalendarData()
-
-// calling functions
-renderCalendar();
-renderTasks();
-adaptCheckboxClass();
-
+function renderSelectedMonth() {
+    const monthEl = document.getElementById('month')
+    monthEl.textContent = `${SelectedMonth.toLocaleString('default', { month: 'long' })} ${SelectedMonth.getFullYear()}`
+    text = ``;
+    renderCalendar()
+    renderTasks()
+    adaptCheckboxClass()
+}
 
 function renderCalendar() {
     let datesHtml = "";
@@ -51,7 +50,8 @@ function renderCalendar() {
 
         if (currentDayOfWeek === "Sat") {
             currentDayOfWeek = "Sa";
-        } else {
+        } 
+        else {
             currentDayOfWeek = currentDayOfWeek[0];
         }
         if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
@@ -63,7 +63,8 @@ function renderCalendar() {
             <div class='todays-date'>
               <p>${i}</p>
             </div>`;
-        } else {
+        } 
+        else {
             daysHtml += `
             <div>
               <p class=''>${currentDayOfWeek}</p>
@@ -77,48 +78,57 @@ function renderCalendar() {
     daysEl.innerHTML = daysHtml;
     datesEl.innerHTML = datesHtml;
 }
-// Rendering JSON and checkboxes
+// Rendering Local Storage data and checkboxes
 function renderTasks() {
 
     const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
 
     calendar.forEach((category) => {
         text += `
-  <p class="categories">${category.categoryName}</p>`;
+    <p class="categories">${category.categoryName}</p>`;
 
         category.activityTypes.forEach((activity) => {
             text += `
-      <p class="activities">${activity.activityName}</p>`;
+        <p class="activities">${activity.activityName}</p>`;
 
             activity.Tasks.forEach((task) => {
                 text += `
-          <p class="task-days task-style">${task.days}</p>`;
+            <p class="task-days task-style">${task.days}</p>`;
 
                 text += `
-            <p class="task-name task-style">${task.taskName}</p>`;
+                <p class="task-name task-style">${task.taskName}</p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
                     // testing i to determine if i is today
                     let todayClass = '';
-                    let checked = task.checkedCb[i - 1];
-                    console.log(checked)
+                    
                     if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
                         todayClass = "todays-checkbox-container"
                     }
-
+                    //Checkboxes initial state changed to 'checked'
+                    //when data from Local Storage determines so
+                    let isChecked = ''
+                    let day = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
+                    for (let date of task.checkedCb){
+                        if (date == day) {
+                            isChecked = "checked"
+                        }
+                    }
+                    
+                    //Rendering chkbx with all need data: 
+                    //(date, assigned task and day and if it's initially checked)
                     text += `
                     <div class="checkbox-container ${todayClass}">        
-                    <input
-                    type="checkbox"
-                    data-checked="${checked}"
-                    data-task="${task.taskName}"
-                    data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
-                    data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
-                        .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
-                    data-assigned-day="${task.days}"
-                    <span class="checkbox"></span>
-                    </input>
-                  </div>`
+                        <input
+                        class="checkbox"
+                        type="checkbox"
+                        data-task="${task.taskName}"
+                        data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
+                        data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)
+                            .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
+                        data-assigned-day="${task.days}"
+                        ${isChecked}>
+                    </div>`
                 }
             });
         });
@@ -130,23 +140,19 @@ function renderTasks() {
 function adaptCheckboxClass() {
 
     for (let checkbox of document.getElementsByTagName('input')) {
-        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)) {
-            checkbox.classList.add('bold-checkbox')
-        }
-        if (checkbox.dataset.assignedDay === checkbox.dataset.day) {
+
+        //For every chbx testing if it's assigned day matches current day
+        //For month days and week days
+        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)
+        ||checkbox.dataset.assignedDay === checkbox.dataset.day) {
             checkbox.classList.add('bold-checkbox')
         }
     }
 }
 
-function renderSelectedMonth() {
-    const monthEl = document.getElementById('month')
-    monthEl.textContent = `${SelectedMonth.toLocaleString('default', { month: 'long' })} ${SelectedMonth.getFullYear()}`
-    text = ``;
-    renderCalendar()
-    renderTasks()
-    adaptCheckboxClass()
-}
-
-renderCheckboxesInfoToLS()
-loadCalendarData()
+// calling functions
+renderCalendar();
+renderTasks();
+adaptCheckboxClass();
+sendChkBxStateToLocalStorage();
+loadCalendarData();
