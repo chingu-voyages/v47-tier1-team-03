@@ -1,6 +1,6 @@
 
 //import { calendar } from "./data.js";
-import { loadCalendarData, sendChkBxStateToLocalStorage } from "./local-storage.js";
+import { loadCalendarData, sendChkBxStateToLocalStorage, saveCalendarData } from "./local-storage.js";
 
 let text = ``;
 
@@ -26,11 +26,18 @@ document.addEventListener('click', (e) => {
 
 function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
-    monthEl.textContent = `${SelectedMonth.toLocaleString('default', { month: 'long' })} ${SelectedMonth.getFullYear()}`
+    monthEl.textContent = `
+    ${SelectedMonth.toLocaleString('default', { month: 'long' })} 
+    ${SelectedMonth.getFullYear()}`
     text = ``;
+
     renderCalendar()
     renderTasks()
     adaptCheckboxClass()
+    //Need to figure out why page is not saving to local storage and changing months
+    sendChkBxStateToLocalStorage()
+    loadCalendarData();
+    saveCalendarData(calendar)
 }
 
 function renderCalendar() {
@@ -156,3 +163,4 @@ renderTasks();
 adaptCheckboxClass();
 sendChkBxStateToLocalStorage();
 loadCalendarData();
+renderSelectedMonth();
