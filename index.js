@@ -18,12 +18,6 @@ document.addEventListener('click', (e) => {
     }
 })
 
-// Event Listener for On_Page_Unload - save calendar data to Local Storage
-window.addEventListener("beforeunload", (e)=>{
-    saveCalendarData(calendar)
- });
-
-
 // load calendar data from local storage
 // if doesn't exist, load from hardcoded JSON file
 var calendar = loadCalendarData()
@@ -157,5 +151,8 @@ allCheckboxes.forEach((checkbox) => {
         const selectedTask = checkbox.getAttribute("data-task-name");
         const selectedDay = checkbox.getAttribute("data-day");
         console.log(`You have selected ${selectedTask} on ${selectedDay}`); //turn into an alert
+
+        saveCalendarData(calendar)
+
     });
 });
