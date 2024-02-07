@@ -51,16 +51,10 @@ function renderCalendar() {
     for (let i = 1; i <= daysInMonth; i++) {
         let currentDate = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i);
 
-        let currentDayOfWeek = new Intl.DateTimeFormat("en-US", {
+        let currentDayOfWeek = new Intl.DateTimeFormat(undefined, {
             weekday: "short",
-        }).format(currentDate);
+        }).format(currentDate)[0].toUpperCase();
 
-        if (currentDayOfWeek === "Sat") {
-            currentDayOfWeek = "Sa";
-        } 
-        else {
-            currentDayOfWeek = currentDayOfWeek[0];
-        }
         if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
             daysHtml += `
               <div class='todays-date'>
@@ -150,9 +144,8 @@ function adaptCheckboxClass() {
 
         //For every chbx testing if it's assigned day matches current day
         //For month days and week days
-        
-        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)
-        ||checkbox.dataset.assignedDay === checkbox.dataset.day) {
+        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)||
+        Number(checkbox.dataset.assignedDay) === Number(checkbox.dataset.day.slice(7, 10))) {
             //Testing to know if task is past due date
             if (compareDates(checkbox.dataset.day, now)){
                 checkbox.classList.add('bold-checkbox', 'future')
