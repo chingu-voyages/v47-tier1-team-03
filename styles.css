@@ -5,6 +5,25 @@ body {
     color: #ffffff;
 }
 
+.frame{
+    display: grid;
+    grid-template: 50px auto/ 50px auto;
+}
+.outer-frame{
+    color: #000000;
+    background-color: #285e81;
+}
+#outer-row {
+    grid-column: 1 / -1;
+}
+#outer-column {
+    grid-row: 2;
+}
+
+#inner {
+    grid-column: 2;
+    grid-row: 2;
+}
 
 /* Grid creating month and week days */
 

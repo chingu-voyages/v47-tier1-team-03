@@ -12,23 +12,34 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-<div id="header" class="header grid">
-  <div class="month-change-container">
-    <button class="month-change-btn" >
-      <i class="fa-solid fa-less-than" id="previous-month"></i>
-    </button>
-    <button class="month-change-btn" >
-      <i class="fa-solid fa-greater-than" id="next-month"></i>
-    </button>
-  </div>
-  <div class="month-heading">
+<div id="outer" class="frame">
+  <!-- Insert outer frame here: -->
+    <div class="outer-frame" id="outer-row">LOGO</div>
+    <div class="outer-frame" id="outer-column">|||</div>
+  <!-- End of outer frame -->
 
-    <span id="month"></span>
+  <div id="inner">
+    <div id="header" class="header grid">
+      <div class="month-change-container">
+        <button class="month-change-btn" >
+          <i class="fa-solid fa-less-than" id="previous-month"></i>
+        </button>
+        <button class="month-change-btn" >
+          <i class="fa-solid fa-greater-than" id="next-month"></i>
+        </button>
+      </div>
+      <div class="month-heading">
+    
+        <span id="month"></span>
+      </div>
+      <div class="weekdays" id="weekdays"></div>
+      <div class="month-dates" id="month-dates"></div>
+    </div>
+    <div id="main-grid" class="grid"></div>
   </div>
-  <div class="weekdays" id="weekdays"></div>
-  <div class="month-dates" id="month-dates"></div>
+
 </div>
-<div id="main-grid" class="grid"></div>
+
 <script src="index.js" type="module"> </script>
 </body>
 </html>
