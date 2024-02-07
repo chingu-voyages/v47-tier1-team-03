@@ -51,16 +51,10 @@ function renderCalendar() {
     for (let i = 1; i <= daysInMonth; i++) {
         let currentDate = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i);
 
-        let currentDayOfWeek = new Intl.DateTimeFormat("en-US", {
+        let currentDayOfWeek = new Intl.DateTimeFormat(undefined, {
             weekday: "short",
-        }).format(currentDate);
+        }).format(currentDate)[0].toUpperCase();
 
-        if (currentDayOfWeek === "Sat") {
-            currentDayOfWeek = "Sa";
-        } 
-        else {
-            currentDayOfWeek = currentDayOfWeek[0];
-        }
         if (i === now.getDate() && now.getTime() === SelectedMonth.getTime()) {
             daysHtml += `
               <div class='todays-date'>
