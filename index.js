@@ -150,9 +150,8 @@ function adaptCheckboxClass() {
 
         //For every chbx testing if it's assigned day matches current day
         //For month days and week days
-        
-        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)
-        ||checkbox.dataset.assignedDay === checkbox.dataset.day) {
+        if (checkbox.dataset.assignedDay.includes(checkbox.dataset.weekday)||
+        Number(checkbox.dataset.assignedDay) === Number(checkbox.dataset.day.slice(7, 10))) {
             //Testing to know if task is past due date
             if (compareDates(checkbox.dataset.day, now)){
                 checkbox.classList.add('bold-checkbox', 'future')
