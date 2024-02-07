@@ -46,7 +46,6 @@ function renderSelectedMonth() {
 function renderCalendar() {
     let datesHtml = "";
     let daysHtml = "";
-
     const daysEl = document.getElementById("weekdays");
     const datesEl = document.getElementById("month-dates");
     const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
