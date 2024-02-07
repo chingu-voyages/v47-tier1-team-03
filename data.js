@@ -6,6 +6,7 @@ export const calendarDefault = [
                 "activityName": "Projects",
                 "Tasks": [
                     {
+                        "taskId": "UpdateRecipes", 
                         "taskName": "Update Recipes Project Backlog",
                         "taskDescription": "",
                         "days": [
@@ -13,6 +14,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "UpdateDailyTasks",
                         "taskName": "Update The dailyTasks sheet with the backlog tasks",
                         "taskDescription": "add the filtering feature to Done",
                         "days": [
@@ -25,6 +27,7 @@ export const calendarDefault = [
                 "activityName": "Blog Posts",
                 "Tasks": [
                     {
+                        "taskId": "PublishDraft",
                         "taskName": "Publish The recent Blog Post Draft to hashnode",
                         "taskDescription": "",
                         "days": [
@@ -32,6 +35,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "WriteHeadline",
                         "taskName": "Write a New headline in a Blog Post Draft",
                         "taskDescription": "",
                         "days": [
@@ -55,6 +59,7 @@ export const calendarDefault = [
                 "activityName": "Node Js Course",
                 "Tasks": [
                     {
+                        "taskId": "PlanNodeCourse",
                         "taskName": "Plan The Node Js Course Progress By Month",
                         "taskDescription": "Set Up A Plan For The Next Month Of Node Js Learning",
                         "days": [
@@ -62,6 +67,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "StudyNodeLecture",
                         "taskName": "Study The First Node Js Lecture",
                         "taskDescription": "",
                         "days": [
@@ -74,6 +80,7 @@ export const calendarDefault = [
                 "activityName": "MongoDB",
                 "Tasks": [
                     {
+                        "taskId": "PlanMongoCourse",
                         "taskName": "Plan The MongoDB Course Progress By Month",
                         "taskDescription": "Set Up A Plan For The Next Month Of Node Js Learning",
                         "days": [
@@ -81,6 +88,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "StudyMongoLecture",
                         "taskName": "Study The First MongoDB Lecture",
                         "taskDescription": "",
                         "days": [
@@ -98,6 +106,7 @@ export const calendarDefault = [
                 "activityName": "Backlog",
                 "Tasks": [
                     {
+                        "taskId": "AddNewFeatures",
                         "taskName": "Add The New Features list",
                         "taskDescription": "",
                         "days": [
@@ -105,6 +114,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "AddNewPRs",
                         "taskName": "Add The New PRs To InReview",
                         "taskDescription": "",
                         "days": [
@@ -117,6 +127,7 @@ export const calendarDefault = [
                 "activityName": "Coding",
                 "Tasks": [
                     {
+                        "taskId": "WorkOnSidebar",
                         "taskName": "Work On The Sidebar",
                         "taskDescription": "Add The Sections Links",
                         "days": [
@@ -124,6 +135,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "RefactorFiltering",
                         "taskName": "Refactor The Filtering Feature Code",
                         "taskDescription": "",
                         "days": [
@@ -141,6 +153,7 @@ export const calendarDefault = [
                 "activityName": "Voyage",
                 "Tasks": [
                     {
+                        "taskId": "ConductPlanningMeeting",
                         "taskName": "Conduct The Project Planning Meeting",
                         "taskDescription": "Conduct The Project Planning Meeting To Discuss Our Ideas",
                         "days": [
@@ -148,6 +161,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "CreateUIDailyTasks",
                         "taskName": "Create The UI/UX Design For The DailyTasks Project",
                         "taskDescription": "Create The UI/UX Design For The DailyTasks Project Based On The Team Discussion",
                         "days": [
@@ -162,6 +176,7 @@ export const calendarDefault = [
                 "activityName": "Pair Programming",
                 "Tasks": [
                     {
+                        "taskId": "CreateWhen2Meet",
                         "taskName": "Create When2Meet Link",
                         "taskDescription": "Create When2Meet Link To Introduce Yourselves",
                         "days": [
@@ -169,6 +184,7 @@ export const calendarDefault = [
                         ]
                     },
                     {
+                        "taskId": "AttendIntroductionMeeting",
                         "taskName": "Attend The Introduction Meeting With Someone",
                         "taskDescription": "",
                         "days": [
