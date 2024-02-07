@@ -1,8 +1,12 @@
-html, body{
-    font-family: 'Inconsolata', monospace;
+html,
+body {
+    font-family: "Inconsolata", monospace;
     margin: 0;
-    color: #080808;
+    color: #ffffff;
 }
+
+
+/* Grid creating month and week days */
 
 .weekdays,
 .month-dates {
@@ -10,18 +14,23 @@ html, body{
     display: grid;
     grid-template-columns: repeat(31, 1fr);
     text-align: center;
-    font-weight: bold;
-    border: 1px solid black;
+
 }
 
 .weekdays {
-    background-color: #ADADAD;;
+    background-color: #285e81;
+    color: #FDFDFD;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .month-dates {
     grid-row: 2;
-    background-color: #D3D3D3;;
+    background-color: #347aa7;
 }
+
+
+/* Current month showing => February 2024 */
 
 .month-heading {
     grid-column: 2/3;
@@ -29,48 +38,174 @@ html, body{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #000000;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 100px 200px repeat(31, auto);
-    grid-auto-rows: auto;
+.month-change-btn {
+    color: black;
+    font-size: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
+
+.month-change-container {
+    grid-row: 2;
+    display: flex;
+    justify-content: end;
+}
+
+
+/* Grid showing Categories, activities, tasks and checkboxes */
+
+.grid {
+    display: grid;
+    grid-template-columns: 100px 200px repeat(31, 1fr);
+    grid-auto-rows: auto;
+    background-color: #d4dee5;
+}
+
 
 /* Category Styles */
-.categories {
-    background-color: #ADADAD;
-    font-size: 24px;
-    font-weight: 700;
-    grid-column: 1 / 3;
-    padding: 8px 16px;
-    border: 1px solid #454545;
-    margin: 0;
+.categories, .activities{
+  z-index: 2;
+  font-weight: 700;
+  grid-column: 1 / -1;
+  padding: 0.5rem 1rem;
+  margin: 0;
 }
+
+.activities, .task-name, .task-days {
+  height: 28px;
+}
+
+.categories {
+  background-color: #285e81;
+  color: #fdfdfd;
+  font-size: 1.5rem;
+}
+
 
 /* Activity Styles */
+
 .activities {
-    height: 28px;
-    background-color: #D3D3D3;
-    font-weight: 700;
-    grid-column: 1 / 3;
-    padding: 8px 16px;
-    border: 1px solid #454545;
-    margin: 0;
+  background-color: #347aa7;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
 }
+
 
 /* Task Styles */
-.task-name{
-    height: 28px;
+
+.task-name {
+
     grid-column: 2;
-    padding: 8px 16px;
     margin: 0;
 }
 
-.task-days{
-    height: 28px;
+.task-days {
+
     grid-column: 1;
     overflow-y: hidden;
     overflow-x: auto;
-    padding: 8px 16px;
+}
+
+.task-style {
+    color: #454545;
+
+    padding: 0.5rem 1rem;
+}
+
+
+/* Dealing with checkboxe's styles */
+
+
+/* Hiding default checkbox */
+
+input[type='checkbox'] {
+    appearance: none;
+    background-color: #fff;
+    /* Not removed via appearance */
+    margin: 0;
+    position: relative;
+}
+
+
+/* Styling customized checkbox "<span>" */
+
+.checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+    align-self: center;
+    border: 0.125rem solid #2E6C94;
+    z-index: 2;
+}
+
+
+/* Selecting due checkbox for a task and a day */
+
+.bold-checkbox {
+    border: 0.25rem solid currentColor;
+    cursor: pointer;
+}
+
+.future {
+    color: #2E6C94;
+}
+
+.past {
+    color: red;
+}
+
+.bold-checkbox:hover {
+    background-color: gray;
+}
+
+.bold-checkbox:checked {
+    color: #2E6C94;
+    background-color: green;
+}
+
+.bold-checkbox:after {
+    content: "";
+    position: absolute;
+    display: block;
+}
+
+
+/* Creating custom tick */
+
+.bold-checkbox:checked:after {
+    top: -3px;
+    left: 2.5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+
+/* Today's bar */
+
+.todays-checkbox-container {
+    z-index: 1;
+    background-color: #C1DBEC;
+}
+
+.todays-date {
+    z-index: 1;
+    background-color: #C1DBEC;
 }
