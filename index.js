@@ -26,8 +26,11 @@ document.addEventListener('click', (e) => {
 
 function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
+    const month = SelectedMonth.toLocaleString('default', { month: 'long' })
+    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+    
     monthEl.textContent = `
-    ${SelectedMonth.toLocaleString('default', { month: 'long' })} 
+    ${capitalizedMonth} 
     ${SelectedMonth.getFullYear()}`
     text = ``;
 
