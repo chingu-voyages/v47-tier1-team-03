@@ -26,8 +26,11 @@ document.addEventListener('click', (e) => {
 
 function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
+    const month = SelectedMonth.toLocaleString('default', { month: 'long' })
+    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+    
     monthEl.textContent = `
-    ${SelectedMonth.toLocaleString('default', { month: 'long' })} 
+    ${capitalizedMonth} 
     ${SelectedMonth.getFullYear()}`
     text = ``;
 
@@ -43,7 +46,6 @@ function renderSelectedMonth() {
 function renderCalendar() {
     let datesHtml = "";
     let daysHtml = "";
-
     const daysEl = document.getElementById("weekdays");
     const datesEl = document.getElementById("month-dates");
     const daysInMonth = new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth() + 1, 0).getDate();
