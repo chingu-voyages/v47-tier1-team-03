@@ -22,6 +22,30 @@ document.addEventListener('click', (e) => {
         SelectedMonth.setMonth(SelectedMonth.getMonth() + 1);
         renderSelectedMonth()
     }
+    else if (e.target.dataset.type === "task") {
+        let hide = ''
+        if (!e.target.dataset.desc) {
+            hide = 'hide'
+        }
+        document.getElementById(e.target.id).innerHTML = `
+        <div class="expand-grid">
+            <div class="expand-task">
+                <p>Task</p>
+                <p>${e.target.dataset.name}</p>
+            </div>
+            <div class="expand-due">
+                <p>Due</p>
+                <p>${e.target.dataset.days}</p>
+            </div>
+            <div class="expand-desc ${hide}">
+                <p>Description</p>
+                <p>${e.target.dataset.desc}</p>
+            </div>
+        </div>
+        `
+        document.getElementById(e.target.id).classList.toggle('expand')
+        document.getElementById(`days-${e.target.id}`).classList.toggle('hide')
+    }
 })
 
 function renderSelectedMonth() {
@@ -96,10 +120,18 @@ function renderTasks() {
 
             activity.Tasks.forEach((task) => {
                 text += `
-            <p class="task-days task-style">${task.days}</p>`;
+            <p id="days-${task.taskName.split(" ").join('-').toLowerCase()}"
+            class="task-days task-style">${task.days}</p>`;
 
                 text += `
-                <p class="task-name task-style">${task.taskName}</p>`;
+                <p 
+                id="${task.taskName.split(" ").join('-').toLowerCase()}" 
+                class="task-name task-style"
+                data-type="task"
+                data-name="${task.taskName}"
+                data-days="${task.days}"
+                data-desc="${task.taskDescription}"
+                >${task.taskName}</p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
                     // testing i to determine if i is today
@@ -121,6 +153,7 @@ function renderTasks() {
                     //Rendering chkbx with all need data: 
                     //(date, assigned task and day and if it's initially checked)
                     text += `
+                    <div class="checkbox-container-container">
                     <div class="checkbox-container ${todayClass}">        
                         <input
                         class="checkbox"
@@ -131,7 +164,9 @@ function renderTasks() {
                             .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
                         data-assigned-day="${task.days}"
                         ${isChecked}>
-                    </div>`
+                    </div>
+                    </div>
+                    `
                 }
             });
         });
