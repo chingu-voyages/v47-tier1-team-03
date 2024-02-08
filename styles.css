@@ -7,7 +7,7 @@ body {
 
 .frame{
     display: grid;
-    grid-template: 50px auto/ 50px auto;
+    grid-template: 80px auto/ 80px auto;
 }
 .outer-frame{
     color: #000000;
@@ -227,4 +227,13 @@ input[type='checkbox'] {
 .todays-date {
     z-index: 1;
     background-color: #C1DBEC;
+}
+
+.logo{
+margin-left: 28px;  
+margin-top: 27px;
+}
+
+.navbar-options{
+    margin-top: 72px
 }
