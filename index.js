@@ -169,6 +169,7 @@ function renderTasks() {
 
   document.getElementById("main-grid").innerHTML = text;
 }
+
 // Making checkboxes bold
 function adaptCheckboxClass() {
   for (let checkbox of document.getElementsByClassName("checkbox")) {
