@@ -107,11 +107,11 @@ function renderCalendar() {
         else {
             daysHtml += `
             <div>
-              <p class=''>${currentDayOfWeek}</p>
+              <p>${currentDayOfWeek}</p>
             </div>`;
             datesHtml += `
             <div>
-              <p class=''>${i}</p>
+              <p>${i}</p>
             </div>`
         }
     }
@@ -185,7 +185,6 @@ function renderTasks() {
                     `   
                 }
                 //hidden div for expanding tasks
-                //DATA REALLY NEEDED?
                 text += `
                 <div class="expanded-task-extra-space hide"
                 id="expanded-task-extra-space-${task.taskName.split(" ").join('-').toLowerCase()}">
