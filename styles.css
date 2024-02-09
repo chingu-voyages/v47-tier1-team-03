@@ -1,9 +1,3 @@
-/* *, 
-*::after, 
-*::before{
-    box-sizing: border-box;
-} */
-
 :root {
     --main-bg-color: #285e81;
     --secondary-bg-color: #347aa7;

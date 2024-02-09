@@ -137,13 +137,11 @@ function renderTasks() {
                 id="days-${task.taskName.split(" ").join('-').toLowerCase()}"
                 class="task-days task-style">${task.days}
                 </p>`;
-                //DATA REALLY NEEDED?
+
                 text += `
                 <p 
                 id="${task.taskName.split(" ").join('-').toLowerCase()}" 
                 class="task-name task-style"
-                
-                data-expanded=false
                 data-type="task"
                 data-name="${task.taskName}"
                 data-days="${task.days}"
@@ -190,8 +188,7 @@ function renderTasks() {
                 //DATA REALLY NEEDED?
                 text += `
                 <div class="expanded-task-extra-space hide"
-                id="expanded-task-extra-space-${task.taskName.split(" ").join('-').toLowerCase()}"
-                data-expanded="true">
+                id="expanded-task-extra-space-${task.taskName.split(" ").join('-').toLowerCase()}">
                 </div>`
             });
         });
