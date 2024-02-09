@@ -42,30 +42,22 @@ document.addEventListener('click', (e) => {
                 <p class="expand-task-title">Due</p>
                 <p class="expand-task-days">${e.target.dataset.days}</p>
             </div>
+            <div class="expand-btns-container">
+                <button class="expand-btns">
+                    <img src="./assets/pen.svg">
+                </button>
+                <button class="expand-btns">
+                    <img src="./assets/trash.svg">
+                </button>
+            </div>
             <div class="expand-desc ${hide}">
                 <p class="expand-task-title">Description</p>
                 <p class="expand-task-info">${e.target.dataset.desc}</p>
             </div>
         </div>`
-     
-        // document.getElementById(e.target.id).dataset.expanded ? "false" : "true"
-        // document.getElementById(e.target.id).dataset.expanded ? document.getElementById(e.target.id).innerHTML = "^" : `<p>${e.target.dataset.name}</p>`
-        document.getElementById(e.target.id).style.textAlign = "right"
-        document.getElementById(e.target.id).classList.toggle('expand')
-        document.getElementById(e.target.id).classList.toggle('hide')
-        document.getElementById(`days-${e.target.id}`).classList.toggle('hide')
-        // getElementsByClassName('expanded-task-extra-space').classList.remove('hide')
-        // document.getElementById(`${e.target.dataset.name}.split(" ").join('-').toLowerCase()`).innerHTML = `<p>${e.target.dataset.name}</p>`
-        console.log(e.target.dataset.name.split(" ").join('-').toLowerCase(), e.target.id)
-    }
-    //--------------------------------------------------------Not working nor needed
-    else if (e.target.dataset.expanded === "expanded") {
-        console.log(e.target.dataset.name)
-        // `expanded-${e.target.dataset.name.split(" ").join('-').toLowerCase()}`
-        document.getElementById(`expanded-task-extra-space-${e.target.id}`).innerHTML = ""
-        
-        document.getElementById(`expanded-task-extra-space-${e.target.id}`).classList.add('hide')
-    //--------------------------------------------------------Not working nor needed
+
+        document.getElementById(e.target.id).classList.toggle('transparent')
+        document.getElementById(`days-${e.target.id}`).classList.toggle('transparent')
     }
 })
 
