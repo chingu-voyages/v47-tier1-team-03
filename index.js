@@ -12,7 +12,7 @@ var calendar = loadCalendarData();
 let SelectedMonth = new Date();
 let now = new Date();
 
-//Event listener for 'changing months' buttons
+//Event listener for 'changing months' and expading tasks 
 document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
         SelectedMonth.setMonth(SelectedMonth.getMonth() - 1);
@@ -21,6 +21,43 @@ document.addEventListener('click', (e) => {
     else if (e.target.id === 'next-month') {
         SelectedMonth.setMonth(SelectedMonth.getMonth() + 1);
         renderSelectedMonth()
+    }
+    else if (e.target.dataset.type === "task") {
+        //Hiding description if task has no description
+        let hide = ''
+        if (!e.target.dataset.desc) {
+            hide = 'hide'
+        }
+        //Expanding on click
+        document.getElementById(`expanded-task-extra-space-${e.target.id}`).classList.toggle('hide')
+        document.getElementById(`expanded-task-extra-space-${e.target.id}`).innerHTML = `
+        <div class="expand-grid">
+            <div  
+            id="expanded-${e.target.dataset.name.split(" ").join('-').toLowerCase()}" 
+            class="expand-task">
+                <p class="expand-task-title">Task</p>
+                <p class="expand-task-info">${e.target.dataset.name}</p>
+            </div>
+            <div class="expand-due">
+                <p class="expand-task-title">Due</p>
+                <p class="expand-task-days">${e.target.dataset.days}</p>
+            </div>
+            <div class="expand-btns-container">
+                <button class="expand-btns">
+                    <img src="./assets/pen.svg">
+                </button>
+                <button class="expand-btns">
+                    <img src="./assets/trash.svg">
+                </button>
+            </div>
+            <div class="expand-desc ${hide}">
+                <p class="expand-task-title">Description</p>
+                <p class="expand-task-info">${e.target.dataset.desc}</p>
+            </div>
+        </div>`
+
+        document.getElementById(e.target.id).classList.toggle('transparent')
+        document.getElementById(`days-${e.target.id}`).classList.toggle('transparent')
     }
 })
 
@@ -37,7 +74,7 @@ function renderSelectedMonth() {
     renderCalendar()
     renderTasks()
     adaptCheckboxClass()
-    //Need to figure out why page is not saving to local storage and changing months
+    //Need to figure out why page is not rendering from local storage when changing months
     sendChkBxStateToLocalStorage()
     loadCalendarData();
     saveCalendarData(calendar)
@@ -70,11 +107,11 @@ function renderCalendar() {
         else {
             daysHtml += `
             <div>
-              <p class=''>${currentDayOfWeek}</p>
+              <p>${currentDayOfWeek}</p>
             </div>`;
             datesHtml += `
             <div>
-              <p class=''>${i}</p>
+              <p>${i}</p>
             </div>`
         }
     }
@@ -96,10 +133,21 @@ function renderTasks() {
 
             activity.Tasks.forEach((task) => {
                 text += `
-            <p class="task-days task-style">${task.days}</p>`;
+                <p 
+                id="days-${task.taskName.split(" ").join('-').toLowerCase()}"
+                class="task-days task-style">${task.days}
+                </p>`;
 
                 text += `
-                <p class="task-name task-style">${task.taskName}</p>`;
+                <p 
+                id="${task.taskName.split(" ").join('-').toLowerCase()}" 
+                class="task-name task-style"
+                data-type="task"
+                data-name="${task.taskName}"
+                data-days="${task.days}"
+                data-desc="${task.taskDescription}"
+                >${task.taskName}
+                </p>`;
 
                 for (let i = 1; i <= daysInMonth; i++) {
                     // testing i to determine if i is today
@@ -118,9 +166,10 @@ function renderTasks() {
                         }
                     }
                     
-                    //Rendering chkbx with all need data: 
+                    //Rendering chkbx with all needed data: 
                     //(date, assigned task and day and if it's initially checked)
                     text += `
+                    
                     <div class="checkbox-container ${todayClass}">        
                         <input
                         class="checkbox"
@@ -131,8 +180,15 @@ function renderTasks() {
                             .toLocaleDateString('en-EN', { weekday: 'long' }).toLowerCase()}"
                         data-assigned-day="${task.days}"
                         ${isChecked}>
-                    </div>`
+                    </div>
+                    
+                    `   
                 }
+                //hidden div for expanding tasks
+                text += `
+                <div class="expanded-task-extra-space hide"
+                id="expanded-task-extra-space-${task.taskName.split(" ").join('-').toLowerCase()}">
+                </div>`
             });
         });
     });
