@@ -12,7 +12,7 @@ var calendar = loadCalendarData();
 let SelectedMonth = new Date();
 let now = new Date();
 
-//Event listener for 'changing months' buttons
+//Event listener for 'changing months' and expading tasks 
 document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
         SelectedMonth.setMonth(SelectedMonth.getMonth() - 1);
@@ -23,18 +23,18 @@ document.addEventListener('click', (e) => {
         renderSelectedMonth()
     }
     else if (e.target.dataset.type === "task") {
+        //Hiding description if task has no description
         let hide = ''
         if (!e.target.dataset.desc) {
             hide = 'hide'
         }
-        
+        //Expanding on click
         document.getElementById(`expanded-task-extra-space-${e.target.id}`).classList.toggle('hide')
         document.getElementById(`expanded-task-extra-space-${e.target.id}`).innerHTML = `
         <div class="expand-grid">
             <div  
             id="expanded-${e.target.dataset.name.split(" ").join('-').toLowerCase()}" 
-            class="expand-task"
-            data-expanded="expanded">
+            class="expand-task">
                 <p class="expand-task-title">Task</p>
                 <p class="expand-task-info">${e.target.dataset.name}</p>
             </div>
@@ -47,18 +47,25 @@ document.addEventListener('click', (e) => {
                 <p class="expand-task-info">${e.target.dataset.desc}</p>
             </div>
         </div>`
-        document.getElementById(e.target.id).innerHTML = "^"
+     
+        // document.getElementById(e.target.id).dataset.expanded ? "false" : "true"
+        // document.getElementById(e.target.id).dataset.expanded ? document.getElementById(e.target.id).innerHTML = "^" : `<p>${e.target.dataset.name}</p>`
         document.getElementById(e.target.id).style.textAlign = "right"
         document.getElementById(e.target.id).classList.toggle('expand')
+        document.getElementById(e.target.id).classList.toggle('hide')
         document.getElementById(`days-${e.target.id}`).classList.toggle('hide')
         // getElementsByClassName('expanded-task-extra-space').classList.remove('hide')
+        // document.getElementById(`${e.target.dataset.name}.split(" ").join('-').toLowerCase()`).innerHTML = `<p>${e.target.dataset.name}</p>`
+        console.log(e.target.dataset.name.split(" ").join('-').toLowerCase(), e.target.id)
     }
+    //--------------------------------------------------------Not working nor needed
     else if (e.target.dataset.expanded === "expanded") {
-        console.log(e.target.dataset.expanded)
+        console.log(e.target.dataset.name)
         // `expanded-${e.target.dataset.name.split(" ").join('-').toLowerCase()}`
         document.getElementById(`expanded-task-extra-space-${e.target.id}`).innerHTML = ""
-        document.getElementById(e.target.id).innerHTML = `<p>${e.target.dataset.name}</p>`
+        
         document.getElementById(`expanded-task-extra-space-${e.target.id}`).classList.add('hide')
+    //--------------------------------------------------------Not working nor needed
     }
 })
 
@@ -75,7 +82,7 @@ function renderSelectedMonth() {
     renderCalendar()
     renderTasks()
     adaptCheckboxClass()
-    //Need to figure out why page is not saving to local storage and changing months
+    //Need to figure out why page is not rendering from local storage when changing months
     sendChkBxStateToLocalStorage()
     loadCalendarData();
     saveCalendarData(calendar)
@@ -138,11 +145,13 @@ function renderTasks() {
                 id="days-${task.taskName.split(" ").join('-').toLowerCase()}"
                 class="task-days task-style">${task.days}
                 </p>`;
-
+                //DATA REALLY NEEDED?
                 text += `
                 <p 
                 id="${task.taskName.split(" ").join('-').toLowerCase()}" 
                 class="task-name task-style"
+                
+                data-expanded=false
                 data-type="task"
                 data-name="${task.taskName}"
                 data-days="${task.days}"
@@ -167,7 +176,7 @@ function renderTasks() {
                         }
                     }
                     
-                    //Rendering chkbx with all need data: 
+                    //Rendering chkbx with all needed data: 
                     //(date, assigned task and day and if it's initially checked)
                     text += `
                     
@@ -185,7 +194,8 @@ function renderTasks() {
                     
                     `   
                 }
-
+                //hidden div for expanding tasks
+                //DATA REALLY NEEDED?
                 text += `
                 <div class="expanded-task-extra-space hide"
                 id="expanded-task-extra-space-${task.taskName.split(" ").join('-').toLowerCase()}"

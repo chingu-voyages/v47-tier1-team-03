@@ -1,17 +1,17 @@
 :root {
     --main-bg-color: #285e81;
     --secondary-bg-color: #347aa7;
-    --main-grid-bg-color: #E9EEF2;
+    --chbx-border-color: #2E6C94;
     --todays-bar-bg-color: #C1DBEC;
     --expand-grid-bg-color: #D4DEE5;
-    --chbx-border-color: #2E6C94;
+    --main-grid-bg-color: #E9EEF2;
     --white: #FDFDFD;
     --black: #080808;
 }
 
 html,
 body {
-    font-family: "Inconsolata", monospace;
+    font-family: "Inconsolata", monospace, sans-serif;
     margin: 0;
     color: var(--white, white);
 }
@@ -20,7 +20,7 @@ body {
 
 .frame{
     display: grid;
-    grid-template: 50px auto/ 50px auto;
+    grid-template: 50px auto / 50px auto;
 }
 .outer-frame{
     color: var(--black, black);
@@ -47,7 +47,6 @@ body {
     grid-template-columns: repeat(31, 1fr);
     text-align: center;
     user-select: none;
-
 }
 
 .weekdays {
@@ -157,6 +156,11 @@ body {
     padding: 0.5rem 1rem;
 }
 
+.task-name:hover {
+    color: var(--chbx-border-color);
+    font-weight: 700;
+}
+
 /* Expanding tasks */
 
 .expand {
@@ -165,7 +169,7 @@ body {
     z-index: 2;
 }
 
-.hide { display: none; }
+.hide { color: transparent; }
 
 .expand-grid{
     display: grid;
@@ -192,11 +196,11 @@ body {
 
 }
 
-.expand-task-title {
-    font-weight: 700;
-    color: #080808;
-}
+.expand-task-title { font-weight: 700; }
+
+.expand-task-title,
 .expand-task-days { color: var(--black, black);}
+
 .expand-task-info { color: #454545; }
 
 .expanded-task-extra-space { 
