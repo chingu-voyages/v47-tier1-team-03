@@ -59,7 +59,7 @@ export function sendChkBxStateToLocalStorage() {
     });
   });
 }
-//UNDO BUTTON
+/**UNDO BUTTON**/
 /* When UNDO button selected, it reverts the last action*/
 
 document.querySelectorAll(".checkbox").forEach((checkbox) => {
