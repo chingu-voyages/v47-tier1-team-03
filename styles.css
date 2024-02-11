@@ -21,7 +21,7 @@ body {
 
 .frame{
     display: grid;
-    grid-template: 50px auto / 50px auto;
+    grid-template: 80px auto / 80px auto;
 }
 .outer-frame{
     color: var(--black, black);
@@ -77,7 +77,7 @@ body {
     grid-row: 2;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-between;
     margin-right: 1rem;
 }
 
