@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Task management tool - V47 T03</title>
@@ -9,15 +10,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
-<div id="outer" class="frame">
-  <!-- Insert outer frame here: -->
-    <div class="outer-frame" id="outer-row">LOGO</div>
-    <div class="outer-frame" id="outer-column">|||</div>
-  <!-- End of outer frame -->
 
+<body>
+  <div id="outer" class="frame">
+    <!-- Insert outer frame here: -->
+    <div class="outer-frame" id="outer-row">
+      <!-- <img src="./assets/LOOKAHEAD_Logo.png" class="logo" alt="LOOKAHEAD Logo"> -->
+    </div>
+    <div class="outer-frame" id="outer-column">
+      <div class="navbar-button-group">
+        <input type="image" src="./assets/menu.png" alt="Menu" class="navbar-button navbar-button-menu"/>
+        <input type="image" src="./assets/Profile.png" alt="Profile" class="navbar-button" />
+        <input type="image" src="./assets/Add.png" alt="Add Task" class="navbar-button"/>
+        <input type="image" src="./assets/Undo.png" alt="Undo" class="navbar-button"/>
+        <input type="image" src="./assets/Save.png" alt="Save" class="navbar-button"/>
+        <input type="image" src="./assets/Share.png" alt="Undo" class="navbar-button"/>
+      </div>
+    </div>
+    <!-- End of outer frame -->
+
+ 
   <div id="inner">
     <div id="header" class="header grid">
       <div class="month-change-container">
@@ -42,8 +57,7 @@
     <div id="main-grid" class="grid"></div>
   </div>
 
-</div>
-
-<script src="index.js" type="module"> </script>
+  <script src="index.js" type="module"> </script>
 </body>
+
 </html>
