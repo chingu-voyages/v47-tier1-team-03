@@ -59,17 +59,17 @@ export function sendChkBxStateToLocalStorage() {
     });
   });
 }
-/* Removing 'checked' task when UNDO button selected*/
+//UNDO BUTTON
+/* When UNDO button selected, it reverts the last action*/
 
-//undo button event listener
+document.querySelectorAll(".checkbox").forEach((checkbox) => {
+  checkbox.addEventListener("click", () => {
+    checkbox.dataset.checked = checkbox.checked;
+  });
+});
 
-const undoButton = document.getElementById("UNDO");
-undoButton.addEventListener("click", () => {
+document.getElementById("UNDO").addEventListener("click", () => {
   document.querySelectorAll(".checkbox").forEach((checkbox) => {
-    checkbox.addEventListener("click", () => {
-      if (checkbox.checked === true) {
-        //maybe use the array Pop() method here?
-      }
-    });
+    checkbox.checked = checkbox.dataset.checked === "true";
   });
 });
