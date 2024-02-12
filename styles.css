@@ -123,6 +123,7 @@ body {
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    box-shadow: 0 0 10px #454545 ;
 }
 .add-btn-modal input[type='text'], 
 .modal-list {
