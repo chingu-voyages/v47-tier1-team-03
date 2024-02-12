@@ -63,7 +63,8 @@ document.addEventListener('click', (e) => {
         document.getElementById(`days-${e.target.id}`).classList.toggle('transparent')
     }
     else if (e.target.id === "add-btn") {
-        document.getElementById('add-btn-modal').classList.toggle('hide')
+        modalCircleAnimation()
+        
     }
     else if (e.target.id === "weekly-btn-add-modal") {
         weeklyBtnInAddModal.classList.add('add-modal-btn-primary')
@@ -83,10 +84,16 @@ document.addEventListener('click', (e) => {
         document.getElementById('weekly-option').classList.add('hide')
     }
     else if (e.target.id === "cancel-btn-add-modal") {
-        document.getElementById('add-btn-modal').classList.add('hide')
+        confirmCancelInModal()
+        
+        
     }
     else if (e.target.id === "save-btn-add-modal") {
-        document.getElementById('add-btn-modal').classList.add('hide')
+        modalCircleAnimation()
+        document.getElementById('new-task-saved').classList.remove('fade')
+        setTimeout(() => {
+            document.getElementById('new-task-saved').classList.add('fade')
+        }, 2000);
     }
 })
 
@@ -260,3 +267,22 @@ function compareDates (chbx, today) {
         return true
     }
   };
+
+function modalCircleAnimation() {
+    const modal = document.getElementById('add-btn-modal')
+    const modalStyles = window.getComputedStyle(modal);
+    if (modalStyles.getPropertyValue('clip-path') === 'circle(0% at 0% 0%)') {
+        modal.style.clipPath = 'circle(200% at 10% 10%)'
+    }
+
+    else {
+        modal.style.clipPath = 'circle(0% at 0% 0%)'
+    }
+}
+
+function confirmCancelInModal() {
+    let text = "Are you sure you want to cancel?";
+    if (confirm(text) == true) {
+        modalCircleAnimation()
+    } 
+  }
