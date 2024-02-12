@@ -12,6 +12,9 @@ var calendar = loadCalendarData();
 let SelectedMonth = new Date();
 let now = new Date();
 
+const weeklyBtnInAddModal = document.getElementById('weekly-btn-add-modal')
+const monthlyBtnInAddModal = document.getElementById('monthly-btn-add-modal')
+
 //Event listener for 'changing months' and expading tasks 
 document.addEventListener('click', (e) => {
     if (e.target.id === 'previous-month') {
@@ -58,6 +61,32 @@ document.addEventListener('click', (e) => {
 
         document.getElementById(e.target.id).classList.toggle('transparent')
         document.getElementById(`days-${e.target.id}`).classList.toggle('transparent')
+    }
+    else if (e.target.id === "add-btn") {
+        document.getElementById('add-btn-modal').classList.toggle('hide')
+    }
+    else if (e.target.id === "weekly-btn-add-modal") {
+        weeklyBtnInAddModal.classList.add('add-modal-btn-primary')
+        weeklyBtnInAddModal.classList.remove('add-modal-btn-secondary')
+        monthlyBtnInAddModal.classList.remove('add-modal-btn-primary')
+        monthlyBtnInAddModal.classList.add('add-modal-btn-secondary')
+        document.getElementById('weekly-option').classList.remove('hide')
+        document.getElementById('monthly-option').classList.add('hide')
+    
+    }
+    else if (e.target.id === "monthly-btn-add-modal") {
+        monthlyBtnInAddModal.classList.add('add-modal-btn-primary')
+        monthlyBtnInAddModal.classList.remove('add-modal-btn-secondary')
+        weeklyBtnInAddModal.classList.remove('add-modal-btn-primary')
+        weeklyBtnInAddModal.classList.add('add-modal-btn-secondary')
+        document.getElementById('monthly-option').classList.remove('hide')
+        document.getElementById('weekly-option').classList.add('hide')
+    }
+    else if (e.target.id === "cancel-btn-add-modal") {
+        document.getElementById('add-btn-modal').classList.add('hide')
+    }
+    else if (e.target.id === "save-btn-add-modal") {
+        document.getElementById('add-btn-modal').classList.add('hide')
     }
 })
 
