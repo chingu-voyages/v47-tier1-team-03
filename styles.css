@@ -125,6 +125,7 @@ body {
     row-gap: 10px;
     box-shadow: 0 0 10px #454545 ;
 }
+
 .add-btn-modal input[type='text'], 
 .modal-list {
     height: 33px;
@@ -218,6 +219,7 @@ body {
 .add-modal-btn-primary {
     color: var(--white, white);
     background-color: var(--main-bg-color);
+    
 }
 
 .add-modal-btn-primary:hover{
@@ -233,8 +235,12 @@ body {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
 }
+
 .week-month-options { display: flex; }
 
+.weekly-option-chbx { margin-top: 6px; }
+
+#save-btn-add-modal{ margin-left: 9px; }
 
 /* Grid showing Categories, activities, tasks and checkboxes */
 
