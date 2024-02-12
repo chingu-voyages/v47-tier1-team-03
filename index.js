@@ -67,28 +67,33 @@ document.addEventListener('click', (e) => {
         
     }
     else if (e.target.id === "weekly-btn-add-modal") {
+
         weeklyBtnInAddModal.classList.add('add-modal-btn-primary')
         weeklyBtnInAddModal.classList.remove('add-modal-btn-secondary')
         monthlyBtnInAddModal.classList.remove('add-modal-btn-primary')
         monthlyBtnInAddModal.classList.add('add-modal-btn-secondary')
+
         document.getElementById('weekly-option').classList.remove('hide')
         document.getElementById('monthly-option').classList.add('hide')
     
     }
     else if (e.target.id === "monthly-btn-add-modal") {
+
         monthlyBtnInAddModal.classList.add('add-modal-btn-primary')
         monthlyBtnInAddModal.classList.remove('add-modal-btn-secondary')
         weeklyBtnInAddModal.classList.remove('add-modal-btn-primary')
         weeklyBtnInAddModal.classList.add('add-modal-btn-secondary')
+
         document.getElementById('monthly-option').classList.remove('hide')
         document.getElementById('weekly-option').classList.add('hide')
     }
     else if (e.target.id === "cancel-btn-add-modal") {
+
         confirmCancelInModal()
-        
         
     }
     else if (e.target.id === "save-btn-add-modal") {
+
         modalCircleAnimation()
         document.getElementById('new-task-saved').classList.remove('fade')
         setTimeout(() => {
