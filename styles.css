@@ -1,7 +1,13 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
 :root {
     --main-bg-color: #285e81;
     --secondary-bg-color: #347aa7;
-    --chbx-border-color: #2E6C94;
+    --elements-border-color: #2E6C94;
     --todays-bar-bg-color: #C1DBEC;
     --expand-grid-bg-color: #D4DEE5;
     --main-grid-bg-color: #E9EEF2;
@@ -101,6 +107,141 @@ body {
 .month-change-btn:hover { transform: scale(1.25); }
 .month-change-btn:active { transform: scale(1.5); }
 
+/* Add Task Modal */
+
+.add-btn-modal {
+    position: absolute;
+    background-color: var(--expand-grid-bg-color);
+    color: var(--black);
+    z-index: 3;
+    top: 160px;
+    left: 160px;
+    width: 656px;
+    height: 641px;
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    box-shadow: 0 0 10px #454545 ;
+}
+
+.add-btn-modal input[type='text'], 
+.modal-list {
+    height: 33px;
+    padding: 8px 16px;
+    width: 288px;
+}
+
+.modal-list {
+    font-weight: 700;
+    color: var(--black, black);
+}
+
+.add-btn-modal input[type='text'], 
+.add-btn-modal textarea,
+.modal-list{
+    border: 1px solid var(--elements-border-color);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+#new-task-desc {
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 16px;
+    resize: none;
+    height: 134px;
+}
+#create-new-task, #new-task-desc {
+    width: 100%;
+    margin-top: 22px;
+}
+#monthly-option {
+    margin-top: 6px;
+    width: 100%;
+}
+
+.add-btn-modal p { font-weight: 700; }
+
+.add-modal-title p { 
+    font-size: 24px; 
+    margin: 0 0 15px 0 ;
+}
+
+.existing-categories-list,
+.new-categories-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.weekly-option-chbx {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(7, auto);
+    align-items: center;
+    justify-content: start;
+    column-gap: 10px;
+}
+.weekly-option-chbx label { font-weight: 700; }
+
+/* Modal Buttons */
+
+.modal-btns {
+    align-self: flex-end;
+    position: absolute;
+    bottom: 24px;
+}
+
+.add-modal-btn {
+    width: 80px;
+    height: 33px;
+    padding: 8px 16px;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 1rem;
+}
+.add-modal-btn-secondary {
+    color: var(--black, black);
+    background-color: var(--white, white);
+}
+
+.add-modal-btn-secondary:hover{
+    background-color: var(--main-grid-bg-color)
+}
+
+.add-modal-btn-primary {
+    color: var(--white, white);
+    background-color: var(--main-bg-color);
+    
+}
+
+.add-modal-btn-primary:hover{
+    background-color: var(--secondary-bg-color)
+}
+
+#weekly-btn-add-modal {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#monthly-btn-add-modal {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.week-month-options { display: flex; }
+
+.weekly-option-chbx { margin-top: 6px; }
+
+#save-btn-add-modal{ margin-left: 9px; }
+
 /* Grid showing Categories, activities, tasks and checkboxes */
 
 .grid {
@@ -120,7 +261,7 @@ body {
   padding: 0.5rem 1rem;
   margin: 0;
   user-select: none;
-  border-left: var(--chbx-border-color) solid 1px;
+  border-left: var(--elements-border-color) solid 1px;
 }
 
 .activities,
@@ -166,7 +307,7 @@ body {
 }
 
 .task-name:hover {
-    color: var(--chbx-border-color);
+    color: var(--elements-border-color);
     font-weight: 700;
     background-image: url("./assets/vertical-arrow.svg");
     background-size: 13px;
@@ -250,9 +391,9 @@ body {
 
 /* Hiding default checkbox */
 
-input[type='checkbox'] {
+.main-grid input[type='checkbox'] {
     appearance: none;
-    background-color: var(--white, white);
+    /* background-color: var(--white, white); */
     margin: 0;
     position: relative;
 }
@@ -270,7 +411,7 @@ input[type='checkbox'] {
     width: 1.125rem;
     height: 1.125rem;
     align-self: center;
-    border: 0.125rem solid var(--chbx-border-color);
+    border: 0.125rem solid var(--elements-border-color);
     z-index: 3;
 }
 
@@ -281,8 +422,7 @@ input[type='checkbox'] {
   cursor: pointer;
 }
 
-
-.future {color: var(--chbx-border-color);}
+.future {color: var(--elements-border-color);}
 
 .past {color: red;}
 
@@ -298,8 +438,6 @@ input[type='checkbox'] {
   position: absolute;
   display: block;
 }
-
-
 
 .logo {
   margin-left: 28px;
@@ -326,7 +464,7 @@ input[type='checkbox'] {
     content: "";
     position: absolute;
     display: block;
-    background-color: var(--chbx-border-color);
+    background-color: var(--elements-border-color);
     height: 2.5rem;
     width: 2.5rem;
     left: -.95rem;
@@ -349,10 +487,11 @@ input[type='checkbox'] {
 /* Creating custom tick */
 
 .bold-checkbox:checked:after {
-    top: -3px;
+    top: -3.5px;
     left: 1px;
-    width: 5px;
-    height: 10px;
+    width: 8px;
+    height: 14px;
+    /* margin: 0 auto; */
     border: solid var(--white, white);
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
