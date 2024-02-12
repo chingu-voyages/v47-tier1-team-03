@@ -63,6 +63,7 @@ document.addEventListener('click', (e) => {
         document.getElementById(`days-${e.target.id}`).classList.toggle('transparent')
     }
     else if (e.target.id === "add-btn") {
+        
         modalCircleAnimation()
         
     }
