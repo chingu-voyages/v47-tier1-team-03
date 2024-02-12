@@ -480,10 +480,11 @@ body {
 /* Creating custom tick */
 
 .bold-checkbox:checked:after {
-    top: -3px;
+    top: -3.5px;
     left: 1px;
-    width: 5px;
-    height: 10px;
+    width: 8px;
+    height: 14px;
+    /* margin: 0 auto; */
     border: solid var(--white, white);
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
