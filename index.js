@@ -66,8 +66,8 @@ document.addEventListener('click', (e) => {
     else if (e.target.id === "add-btn") {
         
         modalCircleAnimation()
-        
     }
+
     else if (e.target.id === "weekly-btn-add-modal") {
 
         weeklyBtnInAddModal.classList.add('add-modal-btn-primary')
@@ -77,8 +77,8 @@ document.addEventListener('click', (e) => {
 
         document.getElementById('weekly-option').classList.remove('hide')
         document.getElementById('monthly-option').classList.add('hide')
-    
     }
+
     else if (e.target.id === "monthly-btn-add-modal") {
 
         monthlyBtnInAddModal.classList.add('add-modal-btn-primary')
@@ -89,11 +89,12 @@ document.addEventListener('click', (e) => {
         document.getElementById('monthly-option').classList.remove('hide')
         document.getElementById('weekly-option').classList.add('hide')
     }
+
     else if (e.target.id === "cancel-btn-add-modal") {
 
         confirmCancelInModal()
-        
     }
+
     else if (e.target.id === "save-btn-add-modal") {
 
         modalCircleAnimation()
@@ -102,8 +103,10 @@ document.addEventListener('click', (e) => {
             document.getElementById('new-task-saved').classList.add('fade')
         }, 2000);
     }
+
     else if (e.target.id === "undo-btn") {
         undoInteraction()
+        saveCalendarData(calendar)
     }
 
 })
@@ -124,6 +127,7 @@ function renderSelectedMonth() {
     //Need to figure out why page is not rendering from local storage when changing months
     sendChkBxStateToLocalStorage()
     loadCalendarData();
+    //LOOK IN HERE - need to figure out the way data takes
     saveCalendarData(calendar)
 }
 
