@@ -22,133 +22,111 @@
     </div>
     <div class="outer-frame" id="outer-column">
       <div class="navbar-button-group">
-        <input type="image" src="./assets/menu.png" alt="Menu" class="navbar-button navbar-button-menu"/>
+        <input type="image" src="./assets/menu.png" alt="Menu" class="navbar-button navbar-button-menu" />
         <input type="image" src="./assets/Profile.png" alt="Profile" class="navbar-button" />
-        <input type="image" src="./assets/Add.png" alt="Add Task" class="navbar-button" id="add-btn"/>
-        <input type="image" src="./assets/Undo.png" alt="Undo" class="navbar-button"/>
-        <input type="image" src="./assets/Save.png" alt="Save" class="navbar-button"/>
-        <input type="image" src="./assets/Share.png" alt="Undo" class="navbar-button"/>
+        <input type="image" src="./assets/Add.png" alt="Add Task" class="navbar-button" id="add-btn" />
+        <input type="image" src="./assets/Undo.png" alt="Undo" class="navbar-button" id="undo-btn" />
+        <input type="image" src="./assets/Save.png" alt="Save" class="navbar-button" />
+        <input type="image" src="./assets/Share.png" alt="Undo" class="navbar-button" />
       </div>
     </div>
 
- <!-- Inner frame -->
-  <div id="inner">
-    <div id="header" class="header grid">
-      <div class="month-change-container">
-        <div class="controls">
-          <button class="month-change-btn" id="previous-month">
-            <!-- <img src="./assets/left-arrow.svg" alt="Select Previous Month"> -->
-            <i class="fa-solid fa-less-than" id="previous-month"></i>
-          </button>
-          <button class="month-change-btn" id="next-month">
-            <!-- <img src="./assets/right-arrow.svg" alt="Select Next Month"> -->
-            <i class="fa-solid fa-greater-than" id="next-month"></i>
-          </button>
+    <!-- Inner frame -->
+    <div id="inner">
+      <div id="header" class="header grid">
+        <div class="month-change-container">
+          <div class="controls">
+            <button class="month-change-btn" id="previous-month">
+              <!-- <img src="./assets/left-arrow.svg" alt="Select Previous Month"> -->
+              <i class="fa-solid fa-less-than" id="previous-month"></i>
+            </button>
+            <button class="month-change-btn" id="next-month">
+              <!-- <img src="./assets/right-arrow.svg" alt="Select Next Month"> -->
+              <i class="fa-solid fa-greater-than" id="next-month"></i>
+            </button>
+          </div>
+          <div class="month-heading">
+            <span id="month"></span>
+          </div>
         </div>
-        <div class="month-heading">
-          <span id="month"></span>
-        </div>
+
+        <div class="weekdays" id="weekdays"></div>
+        <div class="month-dates" id="month-dates"></div>
+      </div>
+      <!-- Main chbx grid -->
+      <div id="main-grid" class="main-grid grid"></div>
+    </div>
+
+    <!-- Add button modal -->
+    <div id="add-btn-modal" class="add-btn-modal">
+
+      <div class="add-modal-title">
+        <p>New Task</p>
       </div>
 
-      <div class="weekdays" id="weekdays"></div>
-      <div class="month-dates" id="month-dates"></div>
-    </div>
-    <!-- Main chbx grid -->
-    <div id="main-grid" class="main-grid grid"></div>
-  </div>
+      <div class="existing-categories-list">
+        <input list="categories" placeholder="Category" class="modal-list">
 
-  <!-- Add button modal -->
-  <div id="add-btn-modal" class="add-btn-modal">
+        <datalist id="categories">
+          <option value="Routine Activities">
+          <option value="Studying">
+        </datalist>
+        <input list="activities" placeholder="Sub-Category" class="modal-list">
 
-    <div class="add-modal-title">
-      <p>New Task</p>
-    </div>
-
-    <div class="existing-categories-list">
-      <input 
-      list="categories" 
-      placeholder="Category" 
-      class="modal-list">
-
-      <datalist id="categories">
-        <option value="Routine Activities">
-        <option value="Studying">
-      </datalist>
-      <input 
-      list="activities" 
-      placeholder="Sub-Category" 
-      class="modal-list">
-      
-      <datalist id="activities">
-        <option value="Projects">
-        <option value="Blog post">
-      </datalist>
-    </div>
-    <div class="new-categories-input">
-      <input 
-      type="text" 
-      id="create-new-category" 
-      placeholder="Add new Category">
-      <input 
-      type="text" 
-      id="create-new-sub-category" 
-      placeholder="Add new Sub-Category">
-    </div>
+        <datalist id="activities">
+          <option value="Projects">
+          <option value="Blog post">
+        </datalist>
+      </div>
+      <div class="new-categories-input">
+        <input type="text" id="create-new-category" placeholder="Add new Category">
+        <input type="text" id="create-new-sub-category" placeholder="Add new Sub-Category">
+      </div>
 
       <input type="text" id="create-new-task" placeholder="Task Name">
 
       <textarea name="description" id="new-task-desc" placeholder="Description"></textarea>
 
-    <p>Due Date</p>
-    <div class="week-month-options">
+      <p>Due Date</p>
+      <div class="week-month-options">
 
-      <button 
-        class="add-modal-btn add-modal-btn-weekly add-modal-btn-primary" 
-        id="weekly-btn-add-modal"
-      >Weekly</button>
-      <button 
-        class="add-modal-btn add-modal-btn-monthly add-modal-btn-secondary" 
-        id="monthly-btn-add-modal"
-      >Monthly</button>
+        <button class="add-modal-btn add-modal-btn-weekly add-modal-btn-primary"
+          id="weekly-btn-add-modal">Weekly</button>
+        <button class="add-modal-btn add-modal-btn-monthly add-modal-btn-secondary"
+          id="monthly-btn-add-modal">Monthly</button>
 
+      </div>
+      <div class="weekly-option-chbx" id="weekly-option">
+
+        <label for="mon">Mon</label>
+        <label for="tue">Tues</label>
+        <label for="wed">Wed</label>
+        <label for="thu">Thurs</label>
+        <label for="fri">Fri</label>
+        <label for="sat">Sat</label>
+        <label for="sun">Sun</label>
+
+        <input id="mon" type="checkbox" value="monday">
+        <input id="tue" type="checkbox" value="tuesday">
+        <input id="wed" type="checkbox" value="wednesday">
+        <input id="thu" type="checkbox" value="thursday">
+        <input id="fri" type="checkbox" value="friday">
+        <input id="sat" type="checkbox" value="saturday">
+        <input id="sun" type="checkbox" value="sunday">
+      </div>
+
+      <input class="monthly-option hide" id="monthly-option" type="text"
+        placeholder="Enter due date. Separate multiple days by commas. Ex. 1, 8, 12">
+
+      <div class="modal-btns">
+        <button class="add-modal-btn add-modal-btn-secondary btn-radius" id="cancel-btn-add-modal">Cancel</button>
+        <button class="add-modal-btn add-modal-btn-primary btn-radius" id="save-btn-add-modal">Save</button>
+      </div>
     </div>
-    <div class="weekly-option-chbx" id="weekly-option">
-    
-      <label for="mon">Mon</label>
-      <label for="tue">Tues</label>
-      <label for="wed">Wed</label>
-      <label for="thu">Thurs</label>
-      <label for="fri">Fri</label>
-      <label for="sat">Sat</label>
-      <label for="sun">Sun</label>
-      
-      <input id="mon" type="checkbox" value="monday">
-      <input id="tue" type="checkbox" value="tuesday">
-      <input id="wed" type="checkbox" value="wednesday">
-      <input id="thu" type="checkbox" value="thursday">
-      <input id="fri" type="checkbox" value="friday">
-      <input id="sat" type="checkbox" value="saturday">
-      <input id="sun" type="checkbox" value="sunday">
+    <div id="new-task-saved" class="fade">
+      <span>New task saved!</span>
     </div>
-
-      <input 
-      class="monthly-option hide" 
-      id="monthly-option" type="text" 
-      placeholder="Enter due date. Separate multiple days by commas. Ex. 1, 8, 12">
-
-    <div class="modal-btns">
-      <button 
-      class="add-modal-btn add-modal-btn-secondary btn-radius" 
-      id="cancel-btn-add-modal">Cancel</button>
-      <button 
-      class="add-modal-btn add-modal-btn-primary btn-radius" 
-      id="save-btn-add-modal">Save</button>
-    </div>
-  </div>
-  <div id="new-task-saved" class="fade">
-    <span>New task saved!</span>
-  </div>
-  <script src="index.js" type="module"> </script>
+    <script src="index.js" type="module"> </script>
 </body>
 
 </html>
