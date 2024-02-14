@@ -1,6 +1,7 @@
 
-//import { calendar } from "./data.js";
+
 import { loadCalendarData, sendChkBxStateToLocalStorage, saveCalendarData } from "./local-storage.js";
+import { undoInteraction} from "./undo-redo.js"
 
 let text = ``;
 
@@ -101,6 +102,10 @@ document.addEventListener('click', (e) => {
             document.getElementById('new-task-saved').classList.add('fade')
         }, 2000);
     }
+    else if (e.target.id === "undo-btn") {
+        undoInteraction()
+    }
+
 })
 
 function renderSelectedMonth() {
@@ -216,6 +221,7 @@ function renderTasks() {
                         <input
                         class="checkbox"
                         type="checkbox"
+                        id= ${Math.random().toString(36).substr(2, 32)}
                         data-task="${task.taskName}"
                         data-day="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)}" 
                         data-weekday="${new Date(SelectedMonth.getFullYear(), SelectedMonth.getMonth(), i)

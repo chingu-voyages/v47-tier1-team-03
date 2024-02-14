@@ -1,5 +1,5 @@
 import { calendarDefault } from "./data.js";
-
+import {logInteraction} from "./undo-redo.js"
 
 // Load Calendar Data from Local Storage
 export function loadCalendarData() {
@@ -56,6 +56,10 @@ export function sendChkBxStateToLocalStorage(){
         })))
         //Logging CB data on click (msg can be seen on dev tools console every time a CB is checked)
         console.log(`You have selected ${checkbox.checked} on ${selectedDay} on ${taskAssignedToCb}`);
+
+        // logs Checkbox Id to enable eventual Undo(s) request(s)
+        logInteraction(checkbox.id)
+
         //Saves to local storage on every CB click
         saveCalendarData(calendar)
     });
