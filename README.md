@@ -17,13 +17,13 @@ or more visual about LOOKAHEAD, click on the live link below.
 - 
 
 ## Team Documents
-- [Team Project Checklist](http://etiny.io/s/i1rOwZ)
 - [Team Decision Log](http://etiny.io/s/0NNOG8)
   
     
     **DEV DEPENDENCIES**
   - CSS
   - HTML
+  - JS
     
 
 
