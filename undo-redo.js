@@ -4,12 +4,15 @@ var undoLog = []; // stack with "Undo Interactions" (only when Undo was the last
 
 // Add a new User Interaction to Log
 export function logInteraction(interaction) {
+  console.log("Logging last User Interaction (to be used on Undo)...")
   interactionsLog.push(interaction);
   undoLog = [];
 }
 
 // Undo last User Interaction
 export function undoInteraction() {
+  console.log("Undoing last User Interaction...")
+
     var checkbox = document.getElementById(getLastInteraction());
     if (checkbox) {
       logUndo(checkbox.id);

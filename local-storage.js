@@ -3,7 +3,7 @@ import {logInteraction} from "./undo-redo.js"
 
 // Load Calendar Data from Local Storage
 export function loadCalendarData() {
-
+  console.log("Loading from Local Storage...")
   var savedCalendarData = localStorage.getItem("calendarData");
   if (savedCalendarData === null || savedCalendarData === "undefined") {
     var parsedCalendarData = calendarDefault;
@@ -16,12 +16,14 @@ export function loadCalendarData() {
 
 // Save Calendar Data to Local Storage
 export function saveCalendarData(calendarData) {
+  console.log("Saving to Local Storage...")
   const stringifiedCalendarData = JSON.stringify(calendarData);
   localStorage.setItem("calendarData", stringifiedCalendarData);
 }
 
 /*Local storage implementation : targeting/selecting checkboxes first*/
 export function sendChkBxStateToLocalStorage(){
+  console.log("Sending CheckBoxes State to Local Storage...")
 
   const calendar = loadCalendarData()
 
