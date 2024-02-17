@@ -58,25 +58,23 @@
     </div>
 
     <!-- Add button modal -->
-    <div id="add-btn-modal" class="add-btn-modal">
+    <form id="add-btn-modal" class="add-btn-modal">
 
       <div class="add-modal-title">
         <p>New Task</p>
       </div>
 
       <div class="existing-categories-list">
-        <input list="categories" placeholder="Category" class="modal-list">
 
-        <datalist id="categories">
+        <select id="categories" class="modal-list">
           <option value="Routine Activities">
           <option value="Studying">
-        </datalist>
-        <input list="activities" placeholder="Sub-Category" class="modal-list">
+        </select>
 
-        <datalist id="activities">
+        <select class="modal-list" id="activities" disabled>
           <option value="Projects">
           <option value="Blog post">
-        </datalist>
+        </select >
       </div>
       <div class="new-categories-input">
         <input type="text" id="create-new-category" placeholder="Add new Category">
@@ -120,9 +118,9 @@
 
       <div class="modal-btns">
         <button class="add-modal-btn add-modal-btn-secondary btn-radius" id="cancel-btn-add-modal">Cancel</button>
-        <button class="add-modal-btn add-modal-btn-primary btn-radius" id="save-btn-add-modal">Save</button>
+        <button class="add-modal-btn add-modal-btn-primary btn-radius" id="save-btn-add-modal" type="submit">Save</button>
       </div>
-    </div>
+    </form>
     <div id="new-task-saved" class="fade">
       <span>New task saved!</span>
     </div>

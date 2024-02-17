@@ -66,6 +66,7 @@ document.addEventListener('click', (e) => {
     else if (e.target.id === "add-btn") {
         
         modalCircleAnimation()
+        getCategories()
     }
 
     else if (e.target.id === "weekly-btn-add-modal") {
@@ -96,12 +97,14 @@ document.addEventListener('click', (e) => {
     }
 
     else if (e.target.id === "save-btn-add-modal") {
-
+        e.preventDefault();
         modalCircleAnimation()
         document.getElementById('new-task-saved').classList.remove('fade')
         setTimeout(() => {
             document.getElementById('new-task-saved').classList.add('fade')
         }, 2000);
+        saveNewTask();
+
     }
 
     else if (e.target.id === "undo-btn") {
@@ -110,6 +113,62 @@ document.addEventListener('click', (e) => {
     }
 
 })
+
+document.getElementById('categories').addEventListener('change', getSubcategories)
+
+function saveNewTask() {
+    const modalForm = document.getElementById('add-btn-modal');
+    const selectedCategory = document.getElementById('categories');
+    const selectedActivity = document.getElementById('activities');
+    const newSelectedCategory = document.getElementById('activities');
+    const newSelectedActivity = document.getElementById('activities');
+    const taskName = document.getElementById('create-new-task');
+    const description = document.getElementById('new-task-desc');
+    const isWeekly = document.getElementById('weekly-btn-add-modal');
+    const isMonthly = document.getElementById('monthly-btn-add-modal');
+    const checkedDaysEl = document.querySelectorAll('input[type="checkbox"]:checked')
+    let checkedDays = []
+    checkedDaysEl.forEach(day => checkedDays.push(day.value))
+
+    let task ={
+        taskName: taskName.value,
+        taskDescription: description.value,
+        days: checkedDays,
+        checkedCb: []
+    }
+
+    calendar[0].activityTypes[0].Tasks.push(task)
+    saveCalendarData()
+    renderSelectedMonth()
+}
+function getCategories() {
+    const categoryEl = document.getElementById('categories');
+    let categoriesHtml = '<option selected value=""> -- select an option -- </option>';
+    calendar.forEach((category) => {
+        categoriesHtml += `<option value="${category.categoryName}">${category.categoryName}</option>`
+    });
+    categoryEl.innerHTML = categoriesHtml;
+    categoryEl.selectedIndex = -1;
+}
+
+function getSubcategories() {
+    const categoryEl = document.getElementById('categories');
+    const subCategoriesEl = document.getElementById('activities');
+    subCategoriesEl.disabled = false;
+    let selectedCategory = []
+    let subCategoriesHtml = '';
+
+    if (categoryEl.value) {
+        selectedCategory = calendar.filter((category) => {
+            return category.categoryName === categoryEl.value
+        })[0]
+    }
+    selectedCategory.activityTypes.forEach((activity) => {
+        subCategoriesHtml += `<option value="${activity.activityName}">${activity.activityName}</option>`
+    })
+    subCategoriesEl.innerHTML = subCategoriesHtml;
+    console.log(selectedCategory);
+}
 
 function renderSelectedMonth() {
     const monthEl = document.getElementById('month')
