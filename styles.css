@@ -1,113 +1,329 @@
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg-color: #285e81;
+    --secondary-bg-color: #347aa7;
+    --elements-border-color: #2E6C94;
+    --todays-bar-bg-color: #C1DBEC;
+    --expand-grid-bg-color: #D4DEE5;
+    --main-grid-bg-color: #E9EEF2;
+    --white: #FDFDFD;
+    --black: #080808;
+}
+
 html,
 body {
-    font-family: "Inconsolata", monospace;
+
+    font-family: "Inconsolata", monospace, sans-serif;
     margin: 0;
-    color: #ffffff;
+    color: var(--white, white);
+}
+
+#new-task-saved {
+    position: fixed;
+    background-color: var(--main-bg-color);
+    color: var(--white, white);
+    position: fixed;
+    width: 500px;
+    height: 50px;
+    bottom: 5%;
+    left: 50%;
+    margin-top: -100px; /* Negative half of height. */
+    margin-left: -250px; /* Negative half of width. */
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    opacity: 90%;
+    transition: opacity .3s ease-out;
+}
+
+.fade {
+    opacity: 0%!important;
 }
 
 
+/* Outer frame user controls grid */
+
+.frame{
+    display: grid;
+    grid-template: 80px auto / 80px auto;
+}
+.outer-frame{
+    color: var(--black, black);
+    background-color: var(--main-bg-color);
+}
+
+#outer-row { grid-column: 1 / -1; }
+
+#outer-column { grid-row: 2; }
+
+#inner {
+  grid-column: 2;
+  grid-row: 2;
+}
+
 /* Grid creating month and week days */
+
+.header { padding-top: 48px; }
 
 .weekdays,
 .month-dates {
+
     grid-column: 3/-1;
     display: grid;
     grid-template-columns: repeat(31, 1fr);
     text-align: center;
+    user-select: none;
+    height: 48px;
+    
+}
 
+.weekdays p {
+    margin: .75rem 0 0;
+    justify-self: center;
+    align-self: center;
 }
 
 .weekdays {
-    background-color: #285e81;
-    color: #FDFDFD;
-  font-size: 1.5rem;
-  font-weight: 700;
+    background-color: var(--main-bg-color);
+    color: var(--white, white);
+    font-size: 1.5rem;
+    line-height: 25px;
+    font-weight: 700;
 }
 
 .month-dates {
     grid-row: 2;
-    background-color: #347aa7;
+    background-color: var(--secondary-bg-color);
 }
 
-
-/* Current month showing => February 2024 */
-
-.month-heading {
-    grid-column: 2/3;
+.month-change-container {
+    grid-column: 2;
     grid-row: 2;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    margin-right: 1rem;
+}
+
+.month-heading {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #000000;
+    color: var(--black, black);
+    margin-left: 2rem;
 }
 
 .month-change-btn {
-    color: black;
     font-size: 1rem;
     background: none;
     border: none;
     cursor: pointer;
+    width: 26px;
+    height: 48px;
+    transition: transform .2s ease-out;
 }
 
-.month-change-container {
-    grid-row: 2;
+.month-change-btn:hover { transform: scale(1.25); }
+.month-change-btn:active { transform: scale(1.5); }
+
+/* Add Task Modal */
+
+.add-btn-modal {
+    position: absolute;
+    background-color: var(--expand-grid-bg-color);
+    color: var(--black);
+    z-index: 3;
+    top: 160px;
+    left: 160px;
+    width: 656px;
+    height: 641px;
+    border-radius: 10px;
+    padding: 24px;
     display: flex;
-    justify-content: end;
+    flex-direction: column;
+    row-gap: 10px;    
+    box-shadow: 11px 18px 54px rgba(0,0,0, .50);
+    /* box-shadow: 5px 5px 5px #080808; */
+    clip-path: circle(0% at 0% 0%);
+    transition: clip-path .5s ease-in-out;
 }
 
+.add-btn-modal input[type='text'], 
+.modal-list {
+    height: 33px;
+    padding: 8px 16px;
+    width: 288px;
+}
+
+.modal-list {
+    font-weight: 700;
+    color: var(--black, black);
+}
+
+.add-btn-modal input[type='text'], 
+.add-btn-modal textarea,
+.modal-list{
+    border: 1px solid var(--elements-border-color);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+#new-task-desc {
+    font-size: 1rem;
+    font-family: inherit;
+    padding: 16px;
+    resize: none;
+    height: 134px;
+}
+#create-new-task, #new-task-desc {
+    width: 100%;
+    margin-top: 22px;
+}
+#monthly-option {
+    margin-top: 6px;
+    width: 100%;
+}
+
+.add-btn-modal p { font-weight: 700; }
+
+.add-modal-title p { 
+    font-size: 24px; 
+    margin: 0 0 15px 0 ;
+}
+
+.existing-categories-list,
+.new-categories-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.weekly-option-chbx {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-template-columns: repeat(7, auto);
+    align-items: center;
+    justify-content: start;
+    column-gap: 10px;
+}
+.weekly-option-chbx label { font-weight: 700; }
+
+/* Modal Buttons */
+
+.modal-btns {
+    align-self: flex-end;
+    position: absolute;
+    bottom: 24px;
+}
+
+.add-modal-btn {
+    width: 80px;
+    height: 33px;
+    padding: 8px 16px;
+    border: 1px solid var(--main-bg-color);
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 1rem;
+}
+.add-modal-btn-secondary {
+    color: var(--black, black);
+    background-color: var(--white, white);
+}
+
+.add-modal-btn-secondary:hover{
+    background-color: var(--main-grid-bg-color)
+}
+
+.add-modal-btn-primary {
+    color: var(--white, white);
+    background-color: var(--main-bg-color);
+    
+}
+
+.add-modal-btn-primary:hover{
+    background-color: var(--secondary-bg-color)
+}
+
+#weekly-btn-add-modal {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#monthly-btn-add-modal {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.week-month-options { display: flex; }
+
+.weekly-option-chbx { margin-top: 6px; }
+
+#save-btn-add-modal{ margin-left: 9px; }
 
 /* Grid showing Categories, activities, tasks and checkboxes */
 
 .grid {
     display: grid;
-    grid-template-columns: 100px 200px repeat(31, 1fr);
+    /* note: Change 1st column to 192px later */
+    grid-template-columns: 100px 272px repeat(31, 1fr);
     grid-auto-rows: auto;
-    background-color: #d4dee5;
+    background-color: var(--main-grid-bg-color);
 }
 
-
 /* Category Styles */
+
 .categories, .activities{
   z-index: 2;
   font-weight: 700;
   grid-column: 1 / -1;
   padding: 0.5rem 1rem;
   margin: 0;
+  user-select: none;
+  border-left: var(--elements-border-color) solid 1px;
 }
 
-.activities, .task-name, .task-days {
+.activities,
+.task-name,
+.task-days {
   height: 28px;
+  user-select: none;
 }
 
 .categories {
-  background-color: #285e81;
-  color: #fdfdfd;
+  background-color: var(--main-bg-color);
+  color: var(--white, white);
   font-size: 1.5rem;
 }
-
 
 /* Activity Styles */
 
 .activities {
-  background-color: #347aa7;
-  color: #ffffff;
+  background-color: var(--secondary-bg-color);
+  color: var(--white, white);
   display: flex;
   align-items: center;
 }
-
 
 /* Task Styles */
 
 .task-name {
 
+    cursor: pointer;
     grid-column: 2;
-    margin: 0;
+    margin: auto 0;
 }
 
 .task-days {
-
     grid-column: 1;
     overflow-y: hidden;
     overflow-x: auto;
@@ -115,97 +331,217 @@ body {
 
 .task-style {
     color: #454545;
-
     padding: 0.5rem 1rem;
 }
 
+.task-name:hover {
+    color: var(--elements-border-color);
+    font-weight: 700;
+    background-image: url("./assets/vertical-arrow.svg");
+    background-size: 13px;
+    background-repeat: no-repeat;
+    background-position: 250px center;
+    padding-right: 25px;
+}
+
+.transparent, .transparent:hover {
+    color: transparent;
+    background-color: var(--expand-grid-bg-color);
+    height: 48px;
+    margin: 0;
+    padding: 0;
+}
+
+/* Expanding tasks */
+
+.expand {
+    grid-column: 1/3;
+    background-color: var(--expand-grid-bg-color);
+    z-index: 2;
+}
+
+.hide { display: none; }
+
+.expand-grid{
+    display: grid;
+    grid-template: 24px 60px auto / 32px calc(192px + 272px - 32px) 76px auto auto auto;
+    gap: 8px;
+}
+
+ .expand-grid p {
+    margin: 8px;
+ }
+
+.expand-task {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.expand-due {
+    grid-row: 2;
+    grid-column: 3;
+    text-transform: capitalize;
+}
+
+.expand-btns-container {
+    grid-row: 2;
+    grid-column: 4;
+    margin: 8px 0;
+}
+
+.expand-btns {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.expand-desc {
+    grid-row: 3;
+    grid-column: 2/ -1;
+
+}
+
+.expand-task-title { font-weight: 700; }
+
+.expand-task-title,
+.expand-task-days { color: var(--black, black);}
+
+.expand-task-info { color: #454545; }
+
+.expanded-task-extra-space { 
+    background-color:var(--expand-grid-bg-color); 
+    grid-column: 1 / -1;
+    height: 193px;
+    user-select: none;
+}
 
 /* Dealing with checkboxe's styles */
 
-
 /* Hiding default checkbox */
 
-input[type='checkbox'] {
+.main-grid input[type='checkbox'] {
     appearance: none;
-    background-color: #fff;
-    /* Not removed via appearance */
+    /* background-color: var(--white, white); */
     margin: 0;
     position: relative;
 }
 
+/* Styling customized checkbox */
 
-/* Styling customized checkbox "<span>" */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;     
+}
 
 .checkbox {
     width: 1.125rem;
     height: 1.125rem;
     align-self: center;
-    border: 0.125rem solid #2E6C94;
-    z-index: 2;
+    border: 0.125rem solid var(--elements-border-color);
+    z-index: 3;
 }
-
 
 /* Selecting due checkbox for a task and a day */
 
 .bold-checkbox {
-    border: 0.25rem solid currentColor;
-    cursor: pointer;
+  border: 0.25rem solid currentColor;
+  cursor: pointer;
 }
 
-.future {
-    color: #2E6C94;
-}
+.future {color: var(--elements-border-color);}
 
-.past {
-    color: red;
-}
+.past {color: red;}
 
-.bold-checkbox:hover {
-    background-color: gray;
-}
+.bold-checkbox:hover { background-color: var(--expand-grid-bg-color); }
 
 .bold-checkbox:checked {
-    color: #2E6C94;
+    color: green;
     background-color: green;
 }
 
 .bold-checkbox:after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.logo {
+  margin-left: 28px;
+  margin-top: 27px;
+  position: absolute;
+}
+
+.name {
+  display: block;
+  justify-content: center;
+  color: var(--white);
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.navbar-button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 72px;
+}
+
+.navbar-button {
+  width: 56px;
+  height: 49px;
+  margin: 12px auto 0;
+}
+
+.navbar-button-menu {
+  margin-bottom: 7px;
+}
+.bold-checkbox:before {
     content: "";
     position: absolute;
     display: block;
+    background-color: var(--elements-border-color);
+    height: 2.5rem;
+    width: 2.5rem;
+    left: -.95rem;
+    top: -.95rem;
+    border-radius: 50%;
+    opacity: 15%;
+    transform: scale(0);
 }
 
+.bold-checkbox:hover:before {
+    transform: scale(1);
+    transition: transform ease-in-out .3s;
+}
+
+.bold-checkbox:active:before {
+    opacity: 30%;
+    transition: opacity ease-in .3s;
+}
 
 /* Creating custom tick */
 
 .bold-checkbox:checked:after {
-    top: -3px;
-    left: 2.5px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
+    top: -3.5px;
+    left: 1px;
+    width: 8px;
+    height: 14px;
+    /* margin: 0 auto; */
+    border: solid var(--white, white);
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
 
-.checkbox-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-}
-
-
 /* Today's bar */
 
-.todays-checkbox-container {
-    z-index: 1;
-    background-color: #C1DBEC;
-}
-
-.todays-date {
-    z-index: 1;
-    background-color: #C1DBEC;
+.todays-checkbox-container, .todays-date {
+    z-index: 2;
+    background-color: var(--todays-bar-bg-color);
+    color: var(--black);
+    padding: 0 4px;
 }
