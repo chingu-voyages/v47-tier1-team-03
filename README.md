@@ -1,28 +1,29 @@
-# voyage-tasks
+**[LOOKAHEAD]**
+**OVERVIEW**
+Lookahead is a project that can also be referred to as task management app or task calender for team workflow and scheduling such techteam etc, its helps to track project sprints, kickoff checklist.
+or more visual about LOOKAHEAD, click on the live link below.
+[Developers render the initial project snapshot image](http://etiny.io/s/Nc80NJ) 
+[Live link;]() 
 
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
-
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
-
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
-
-> Own it & Make it your Own!
+**FEATURES**
+- Store the generated checklist in local storage to persist user data beyond the initial session
+- If the user clicks on a task that has been completed, remove the check mark. In other words, clicking toggles the checkmark.
+- Introduce a "Save" button specifically for updating local storage.
+- On clicking "Save," capture the current state of the task list, including modifications and progress.
+- Fetch and display only relevant tasks and days for the current month.
+- Store this updated data in local storage to maintain the latest user changes.
+- Reflect completion status by checking/unchecking the checkboxes.
+- Store this updated data in local storage to maintain the latest user changes.
+- 
 
 ## Team Documents
+- [Team Decision Log](http://etiny.io/s/0NNOG8)
+  
+    
+    **DEV DEPENDENCIES**
+  - CSS
+  - HTML
+  - JS
+    
 
-You may find these helpful as you work together to organize your project.
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
-
-Meeting Agenda templates (located in the `/docs` directory in this repo):
-
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx
